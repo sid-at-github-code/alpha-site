@@ -31,10 +31,7 @@ export function HowItWorks() {
           className="max-w-2xl"
         >
           <p className="eyebrow">How It Works</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="mt-4 h2-spec text-foreground">
             Simple for everyone involved.
           </h2>
         </motion.div>
@@ -57,7 +54,7 @@ export function HowItWorks() {
               className="relative rounded-2xl border border-border bg-surface p-8 card-hover"
             >
               <span className="font-mono text-[11px] text-accent">{s.n}</span>
-              <h3 className="mt-6 font-display text-[24px] text-foreground">{s.title}</h3>
+              <h3 className="mt-6 text-foreground" style={{ fontSize: 22, fontWeight: 500, letterSpacing: "-0.02em" }}>{s.title}</h3>
               <p className="mt-3 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>
                 {s.body}
               </p>

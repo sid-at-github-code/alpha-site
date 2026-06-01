@@ -41,12 +41,7 @@ export function BlogNews() {
         >
           <div>
             <p className="eyebrow">News</p>
-            <h2
-              className="font-display font-light text-foreground mt-4"
-              style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-            >
-              The latest news
-            </h2>
+            <h2 className="mt-4 h2-spec text-foreground">The latest news</h2>
           </div>
           <a href="#" className="hidden md:inline-block text-[13px] text-accent hover:underline transition mb-2">
             View all →
@@ -73,8 +68,7 @@ export function BlogNews() {
                 <span>{article.date}</span>
               </div>
               <h3
-                className="font-display text-foreground transition-colors group-hover:text-accent"
-                style={{ fontSize: "clamp(18px, 2vw, 22px)", lineHeight: 1.25 }}
+                style={{ fontFamily: "Poppins", fontSize: "clamp(16px, 1.8vw, 20px)", fontWeight: 500, lineHeight: 1.35, letterSpacing: "-0.02em", color: "var(--foreground)", transition: "color 0.2s" }}
               >
                 {article.title}
               </h3>

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { TopBar } from "@/components/TopBar";
 import { Navbar } from "@/components/Navbar";
 import { HeroSearch } from "@/components/HeroSearch";
@@ -16,6 +17,9 @@ import { BlogNews } from "@/components/BlogNews";
 import { Newsletter } from "@/components/Newsletter";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
+import { ClientOnly } from "@/components/ClientOnly";
+
+const ScrollScene = lazy(() => import("@/components/three/ScrollScene"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,14 +28,14 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Alpha Firms is the interior economy, organized — connecting customers, designers, and material suppliers in a single trusted network.",
+          "AlphaFirms — India's only trusted Interior & Living Space Ecosystem.",
       },
-      { property: "og:title", content: "Home - AlphaFirms" },
-      { property: "og:type", content: "website" },
-      { property: "og:locale", content: "en_US" },
+      { property: "og:title",     content: "Home - AlphaFirms" },
+      { property: "og:type",      content: "website" },
+      { property: "og:locale",    content: "en_US" },
       { property: "og:site_name", content: "AlphaFirms" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "index, follow" },
+      { name: "twitter:card",     content: "summary_large_image" },
+      { name: "robots",           content: "index, follow" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -43,11 +47,21 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Navbar />
+
       <HeroSearch />
       <CategoryStrip />
       <Hero />
+
       <FeaturedCategories />
       <FeaturedAds />
+
+      {/* Scroll-driven 3D room assembly */}
+      <ClientOnly fallback={<div className="h-[60px] border-t border-border" />}>
+        <Suspense fallback={<div className="h-[60px] border-t border-border" />}>
+          <ScrollScene />
+        </Suspense>
+      </ClientOnly>
+
       <EcosystemDiagram />
       <HowItWorks />
       <WhyAlphaFirms />

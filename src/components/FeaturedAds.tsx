@@ -25,12 +25,7 @@ export function FeaturedAds() {
           variants={fadeUp}
         >
           <p className="eyebrow">Check out what's new</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
-            Featured ads
-          </h2>
+          <h2 className="mt-4 h2-spec text-foreground">Featured ads</h2>
         </motion.div>
 
         {/* Filter tabs */}
@@ -68,13 +63,13 @@ export function FeaturedAds() {
                 className="relative h-56 flex items-center justify-center overflow-hidden"
                 style={{
                   background:
-                    "linear-gradient(135deg, #1C1916 0%, #222018 50%, #1A1712 100%)",
+                    "linear-gradient(135deg, #EDE8E0 0%, #E4DDD2 50%, #EBE5DC 100%)",
                 }}
               >
                 {/* Decorative initial */}
                 <span
                   className="font-display font-light text-accent select-none pointer-events-none"
-                  style={{ fontSize: "clamp(60px, 8vw, 80px)", opacity: 0.12, lineHeight: 1 }}
+                  style={{ fontSize: "clamp(60px, 8vw, 80px)", opacity: 0.18, lineHeight: 1 }}
                 >
                   {ad.title[0]}
                 </span>
@@ -98,7 +93,7 @@ export function FeaturedAds() {
                     {ad.views}
                   </span>
                 </div>
-                <h3 className="font-display text-[21px] text-foreground mt-2">{ad.title}</h3>
+                <h3 style={{ fontFamily: "Poppins", fontSize: 19, fontWeight: 600, color: "var(--foreground)", marginTop: 8 }}>{ad.title}</h3>
                 <div className="mt-4 flex gap-2">
                   <button className="flex-1 py-2 rounded-lg border border-border text-[11px] font-mono uppercase tracking-[0.12em] text-muted-foreground hover:border-accent/50 hover:text-accent transition">
                     Quick View

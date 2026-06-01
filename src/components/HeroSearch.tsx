@@ -10,30 +10,16 @@ export function HeroSearch() {
   const [focused, setFocused] = useState(false);
 
   return (
-    <section className="relative min-h-[86vh] flex items-center border-b border-border overflow-hidden">
-      {/* Warm ambient glow from top */}
+    <section className="relative min-h-[88vh] flex items-center border-b border-border overflow-hidden">
+      {/* Warm ambient glow */}
       <div className="pointer-events-none absolute inset-0 ambient-top" />
 
-      {/* Dot grid — tech texture */}
-      <div
-        className="pointer-events-none absolute inset-0 dot-grid"
-        style={{ opacity: 0.035 }}
-      />
-
-      {/* Vignette edges */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 50%, var(--background) 100%)",
-        }}
-      />
-
+      {/* Content */}
       <motion.div
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-[960px] w-full px-6 py-36 text-center"
+        className="relative mx-auto max-w-[900px] w-full px-6 py-44 text-center"
       >
         <motion.p variants={fadeUp} className="eyebrow">
           India's Premium Interior Marketplace
@@ -41,28 +27,32 @@ export function HeroSearch() {
 
         <motion.h1
           variants={fadeUp}
-          className="text-gradient font-display font-light mt-6 mx-auto"
+          className="mt-6 mx-auto"
           style={{
-            fontSize: "clamp(54px, 9vw, 112px)",
-            lineHeight: 0.93,
-            letterSpacing: "-0.025em",
-            maxWidth: 860,
+            fontFamily: "Poppins, sans-serif",
+            fontSize: "clamp(44px, 7vw, 80px)",
+            fontWeight: 600,
+            lineHeight: 1.2,
+            letterSpacing: "-0.05em",
+            color: "var(--foreground)",
+            maxWidth: 820,
           }}
         >
           Find Anything
           <br />
-          For Your
-          <br />
-          Dream Space.
+          For Your Dream Space.
         </motion.h1>
 
+        {/* Search bar */}
         <motion.div
           variants={fadeUp}
           className="mt-12 flex gap-3 max-w-lg mx-auto"
           style={{
-            borderRadius: 999,
+            borderRadius: 100,
             transition: "box-shadow 0.3s",
-            boxShadow: focused ? "0 0 0 1px rgba(200,169,106,0.4), 0 0 28px rgba(200,169,106,0.15)" : "none",
+            boxShadow: focused
+              ? "0 0 0 2px rgba(248,123,84,0.45), 0 4px 24px rgba(248,123,84,0.16)"
+              : "rgba(64,83,100,0.10) 0px 4px 20px 0px",
           }}
         >
           <input
@@ -72,26 +62,51 @@ export function HeroSearch() {
             onChange={(e) => setLocation(e.target.value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            className="flex-1 rounded-full border border-border bg-surface px-5 py-3.5 text-[14px] text-foreground placeholder:text-muted-foreground outline-none focus:border-accent/50 transition-colors"
+            style={{
+              flex: 1,
+              borderRadius: 100,
+              border: "1px solid var(--border)",
+              backgroundColor: "var(--surface-raised)",
+              padding: "14px 20px",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: 15,
+              fontWeight: 500,
+              color: "var(--foreground)",
+              outline: "none",
+            }}
           />
-          <button className="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-background hover:opacity-88 transition-opacity">
-            <Search size={13} strokeWidth={2.5} />
+          <button
+            className="btn-primary"
+            style={{ minWidth: 120, minHeight: 51, fontSize: 14, padding: "0 24px", gap: 8, display: "inline-flex", alignItems: "center" }}
+          >
+            <Search size={14} strokeWidth={2.5} />
             Search
           </button>
         </motion.div>
 
+        {/* Popular tags */}
         <motion.div
           variants={fadeUp}
           className="mt-6 flex flex-wrap items-center justify-center gap-2"
         >
-          <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-muted-foreground mr-1">
+          <span style={{ fontFamily:"Poppins", fontSize:11, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.14em", color:"var(--muted-foreground)" }}>
             What's popular:
           </span>
           {popularTags.map((tag) => (
             <a
               key={tag}
               href="#"
-              className="text-[11px] font-mono text-accent/65 hover:text-accent border border-border hover:border-accent/40 rounded-full px-3 py-1 transition-all duration-200"
+              style={{
+                fontFamily: "Poppins",
+                fontSize: 11,
+                fontWeight: 500,
+                color: "var(--accent)",
+                border: "1px solid var(--border)",
+                borderRadius: 100,
+                padding: "4px 12px",
+                textDecoration: "none",
+                transition: "border-color 0.2s",
+              }}
             >
               {tag}
             </a>

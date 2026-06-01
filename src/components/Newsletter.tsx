@@ -15,10 +15,7 @@ export function Newsletter() {
         className="mx-auto max-w-[640px] px-6 text-center"
       >
         <p className="eyebrow">Stay in the loop</p>
-        <h2
-          className="font-display font-light text-foreground mt-4"
-          style={{ fontSize: "clamp(28px, 4vw, 44px)", lineHeight: 1.1 }}
-        >
+        <h2 className="mt-4 text-foreground" style={{ fontFamily: "Poppins", fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.04em" }}>
           Sign up to receive the latest updates and news
         </h2>
         <form
@@ -34,7 +31,8 @@ export function Newsletter() {
           />
           <button
             type="submit"
-            className="rounded-full bg-accent px-6 py-3 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition-opacity"
+            className="btn-primary"
+            style={{ minWidth: 130, minHeight: 51, fontSize: 14 }}
           >
             Subscribe
           </button>

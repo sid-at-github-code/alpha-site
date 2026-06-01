@@ -14,13 +14,10 @@ export function FeaturedCategories() {
           variants={fadeUp}
         >
           <p className="eyebrow">Featured categories</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="mt-4 h2-spec text-foreground">
             Discover from INDIA's only trusted Interior &amp; Living Space Ecosystem
           </h2>
-          <p className="mt-3 text-[15px] text-muted-foreground">
+          <p className="mt-3 text-muted-foreground">
             INDIA's first trusted Interior &amp; Living Space Platform
           </p>
         </motion.div>
@@ -40,7 +37,7 @@ export function FeaturedCategories() {
               className="group flex items-center justify-center rounded-2xl border border-border bg-surface p-10 text-center card-hover"
               style={{ minHeight: 140 }}
             >
-              <span className="font-display text-[22px] text-foreground group-hover:text-accent transition-colors">
+              <span style={{ fontFamily: "Poppins", fontSize: 20, fontWeight: 600, color: "var(--foreground)", transition: "color 0.2s" }} className="group-hover:text-accent">
                 {cat}
               </span>
             </motion.a>

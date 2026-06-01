@@ -23,12 +23,7 @@ export function Testimonials() {
           variants={fadeUp}
         >
           <p className="eyebrow">What our clients say</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
-            Testimonials
-          </h2>
+          <h2 className="mt-4 h2-spec text-foreground">Testimonials</h2>
         </motion.div>
 
         <motion.div
@@ -48,8 +43,8 @@ export function Testimonials() {
                 "{body}"
               </p>
               <div className="mt-6 pt-6 border-t border-border">
-                <p className="font-display text-[18px] text-foreground">{t.name}</p>
-                <p className="mt-1 text-[11px] font-mono uppercase tracking-[0.14em] text-muted-foreground">
+                <p style={{ fontFamily: "Poppins", fontSize: 17, fontWeight: 600, color: "var(--foreground)" }}>{t.name}</p>
+                <p className="mt-1" style={{ fontFamily: "Poppins", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--accent)" }}>
                   {t.role}
                 </p>
               </div>

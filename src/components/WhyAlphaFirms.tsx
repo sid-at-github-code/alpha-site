@@ -41,10 +41,7 @@ export function WhyAlphaFirms() {
           className="max-w-3xl"
         >
           <p className="eyebrow">Why Alpha Firms</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="mt-4 h2-spec text-foreground">
             Built for professionals who don't have time to waste.
           </h2>
         </motion.div>
@@ -68,7 +65,7 @@ export function WhyAlphaFirms() {
                 aria-hidden
                 className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
               />
-              <h3 className="font-display text-[26px] text-foreground">{f.title}</h3>
+              <h3 className="text-foreground h3-spec">{f.title}</h3>
               <p className="mt-3 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>
                 {f.body}
               </p>

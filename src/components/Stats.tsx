@@ -23,8 +23,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 
   return (
     <span
-      className="font-display font-light text-foreground"
-      style={{ fontSize: "clamp(56px, 9vw, 96px)", lineHeight: 1 }}
+      style={{ fontFamily: "Poppins", fontSize: "clamp(48px, 8vw, 88px)", fontWeight: 700, lineHeight: 1, color: "var(--foreground)" }}
     >
       <motion.span ref={ref}>{rounded}</motion.span>
       {suffix}
@@ -44,10 +43,7 @@ export function Stats() {
           className="max-w-2xl"
         >
           <p className="eyebrow">By the Numbers</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="mt-4 h2-spec text-foreground">
             The numbers speak for themselves.
           </h2>
         </motion.div>

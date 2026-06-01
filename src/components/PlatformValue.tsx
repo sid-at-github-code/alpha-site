@@ -28,10 +28,7 @@ export function PlatformValue() {
           className="max-w-3xl"
         >
           <p className="eyebrow">Why AlphaFirms?</p>
-          <h2
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="mt-4 h2-spec text-foreground">
             INDIA's only trusted Interior &amp; Living Space Ecosystem
           </h2>
         </motion.div>
@@ -53,7 +50,7 @@ export function PlatformValue() {
                 aria-hidden
                 className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
               />
-              <h3 className="font-display text-[22px] text-foreground">{f.title}</h3>
+              <h3 style={{ fontFamily: "Poppins", fontSize: 20, fontWeight: 500, letterSpacing: "-0.02em", color: "var(--foreground)" }}>{f.title}</h3>
               <p className="mt-3 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>
                 {f.body}
               </p>
@@ -69,10 +66,7 @@ export function PlatformValue() {
           className="mt-20 rounded-2xl border border-border bg-surface p-10 md:p-14"
         >
           <p className="eyebrow">The Platform</p>
-          <h3
-            className="font-display font-light text-foreground mt-4"
-            style={{ fontSize: "clamp(28px, 4vw, 44px)", lineHeight: 1.1 }}
-          >
+          <h3 className="mt-4 text-foreground" style={{ fontFamily: "Poppins", fontSize: "clamp(24px, 3.5vw, 40px)", fontWeight: 500, lineHeight: 1.2, letterSpacing: "-0.035em" }}>
             India's only curated B2B2C platform — built for the living space industry.
           </h3>
           <p className="mt-5 text-[16px] text-muted-foreground max-w-3xl" style={{ lineHeight: 1.7 }}>
@@ -80,7 +74,7 @@ export function PlatformValue() {
           </p>
           <a
             href="#"
-            className="mt-8 inline-flex items-center rounded-full bg-accent px-7 py-3 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
+            className="btn-primary mt-8"
           >
             Explore listings
           </a>

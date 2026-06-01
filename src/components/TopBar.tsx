@@ -45,8 +45,7 @@ const socials = [
 export function TopBar() {
   return (
     <div
-      className="fixed top-0 inset-x-0 z-[51] h-9 border-b border-border"
-      style={{ backgroundColor: "rgba(14,12,9,0.96)", backdropFilter: "blur(12px)" }}
+      className="topbar-glass fixed top-0 inset-x-0 z-[51] h-9 border-b border-border"
     >
       <div className="mx-auto max-w-[1280px] px-6 h-full flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -55,7 +54,9 @@ export function TopBar() {
               key={s.label}
               href={s.href}
               aria-label={s.label}
-              className="text-muted-foreground hover:text-accent transition-colors"
+              style={{ color: "var(--muted-foreground)", transition: "color 0.2s" }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)")}
             >
               {s.icon}
             </a>
@@ -63,7 +64,15 @@ export function TopBar() {
         </div>
         <a
           href="#"
-          className="text-[10px] font-mono uppercase tracking-[0.16em] text-accent hover:opacity-75 transition-opacity"
+          style={{
+            fontFamily: "Poppins, sans-serif",
+            fontSize: 10,
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.14em",
+            color: "var(--accent)",
+            textDecoration: "none",
+          }}
         >
           Post Your Ad
         </a>

@@ -1,21 +1,17 @@
 const usefulLinks = [
-  { label: "About Us", href: "#about" },
-  { label: "Contact Us", href: "#contact" },
-  { label: "FAQ", href: "#" },
-  { label: "Terms & Conditions", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Subscription Plans", href: "#" },
+  { label: "About Us",          href: "#about"   },
+  { label: "Contact Us",        href: "#contact" },
+  { label: "FAQ",               href: "#"        },
+  { label: "Terms & Conditions",href: "#"        },
+  { label: "Privacy Policy",    href: "#"        },
+  { label: "Subscription Plans",href: "#"        },
 ];
-
-const categoryLinks = [
-  { label: "Trends", href: "#" },
-];
-
-const newestListings = [
-  { label: "Living Shapes", href: "#" },
-  { label: "Looking Good Furniture", href: "#" },
-  { label: "T&T", href: "#" },
-  { label: "Design Code", href: "#" },
+const categoryLinks   = [{ label: "Trends", href: "#" }];
+const newestListings  = [
+  { label: "Living Shapes",         href: "#" },
+  { label: "Looking Good Furniture",href: "#" },
+  { label: "T&T",                   href: "#" },
+  { label: "Design Code",           href: "#" },
 ];
 
 const socials = [
@@ -62,14 +58,19 @@ const socials = [
   },
 ];
 
-function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+function Col({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div>
-      <h4 className="text-[11px] font-mono uppercase tracking-[0.18em] text-foreground mb-4">{title}</h4>
-      <ul className="space-y-2.5">
+      <h4 style={{ fontFamily: "Poppins", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.16em", color: "var(--foreground)", marginBottom: 16 }}>
+        {title}
+      </h4>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
         {items.map((l) => (
           <li key={l.label}>
-            <a href={l.href} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">
+            <a href={l.href} style={{ fontFamily: "Poppins", fontSize: 13, fontWeight: 500, color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--foreground)")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--muted-foreground)")}
+            >
               {l.label}
             </a>
           </li>
@@ -86,21 +87,22 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <p className="font-display text-[22px] text-foreground">Alpha Firms</p>
-            <p className="mt-2 text-[13px] text-muted-foreground">
+            <p style={{ fontFamily: "Poppins", fontSize: 22, fontWeight: 700, color: "var(--foreground)", letterSpacing: "-0.03em" }}>
+              Alpha Firms
+            </p>
+            <p className="mt-2" style={{ fontSize: 13, fontWeight: 500, color: "var(--muted-foreground)" }}>
               The platform for the interior economy.
             </p>
             <div className="mt-5">
-              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground mb-3">
+              <p style={{ fontFamily: "Poppins", fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.16em", color: "var(--muted-foreground)", marginBottom: 12 }}>
                 Follow our social media
               </p>
               <div className="flex items-center gap-4">
                 {socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="text-muted-foreground hover:text-accent transition-colors"
+                  <a key={s.label} href={s.href} aria-label={s.label}
+                    style={{ color: "var(--muted-foreground)", transition: "color 0.2s" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)")}
                   >
                     {s.icon}
                   </a>
@@ -108,30 +110,32 @@ export function Footer() {
               </div>
             </div>
           </div>
-
-          <FooterCol title="Useful Links" items={usefulLinks} />
-          <FooterCol title="Categories" items={categoryLinks} />
-          <FooterCol title="Newest Listings" items={newestListings} />
+          <Col title="Useful Links"    items={usefulLinks}   />
+          <Col title="Categories"      items={categoryLinks} />
+          <Col title="Newest Listings" items={newestListings}/>
         </div>
 
+        {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-muted-foreground">
+          <p style={{ fontFamily: "Poppins", fontSize: 12, fontWeight: 500, color: "var(--muted-foreground)" }}>
             © 2026. AlphaFirms All rights reserved.
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-muted-foreground">
+          <div className="flex flex-wrap gap-6">
             {[
               { label: "For Homeowners", href: "/homeowners" },
-              { label: "For Designers", href: "/designers" },
-              { label: "For Suppliers", href: "/suppliers" },
-              { label: "Contact", href: "#contact" },
+              { label: "For Designers",  href: "/designers"  },
+              { label: "For Suppliers",  href: "/suppliers"  },
+              { label: "Contact",        href: "#contact"    },
             ].map((l) => (
-              <li key={l.label}>
-                <a href={l.href} className="hover:text-foreground transition-colors">
-                  {l.label}
-                </a>
-              </li>
+              <a key={l.label} href={l.href}
+                style={{ fontFamily: "Poppins", fontSize: 12, fontWeight: 500, color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
+                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--foreground)")}
+                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--muted-foreground)")}
+              >
+                {l.label}
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </footer>

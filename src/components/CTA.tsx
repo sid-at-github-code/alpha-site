@@ -4,10 +4,9 @@ import { fadeUp, viewportOnce } from "@/lib/motionVariants";
 export function CTA() {
   return (
     <section id="cta" className="relative overflow-hidden py-44 border-t border-border">
-      {/* Ambient center glow */}
       <div className="pointer-events-none absolute inset-0 ambient-center" />
 
-      {/* Concentric circles — slightly more visible on dark */}
+      {/* Concentric circles — blue tint */}
       <svg
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px]"
@@ -15,7 +14,7 @@ export function CTA() {
         fill="none"
         stroke="currentColor"
         strokeWidth="0.4"
-        style={{ color: "rgba(200,169,106,0.12)" }}
+        style={{ color: "rgba(0,0,238,0.10)" }}
       >
         <circle cx="500" cy="500" r="490" />
         <circle cx="500" cy="500" r="390" />
@@ -33,9 +32,17 @@ export function CTA() {
       >
         <p className="eyebrow">Get Started</p>
 
+        {/* H2 spec: 48px, 500, -1.92px tracking */}
         <h2
-          className="text-gradient font-display font-light mt-5"
-          style={{ fontSize: "clamp(44px, 6.5vw, 88px)", lineHeight: 0.97 }}
+          className="mt-5"
+          style={{
+            fontFamily: "Poppins, sans-serif",
+            fontSize: "clamp(32px, 5vw, 64px)",
+            fontWeight: 600,
+            lineHeight: 1.1,
+            letterSpacing: "-0.05em",
+            color: "var(--foreground)",
+          }}
         >
           Your next project
           <br />
@@ -43,26 +50,16 @@ export function CTA() {
         </h2>
 
         <p
-          className="mt-7 text-[17px] text-muted-foreground max-w-[520px] mx-auto"
-          style={{ lineHeight: 1.65 }}
+          className="mt-7 max-w-[520px] mx-auto"
+          style={{ color: "var(--muted-foreground)", lineHeight: 1.65 }}
         >
           Whether you're a customer, a designer, or a supplier — Alpha Firms is where
           interior projects begin.
         </p>
 
         <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-background hover:opacity-90 transition glow-btn"
-          >
-            Get Started
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center rounded-full border border-accent/40 px-8 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-accent hover:bg-accent/10 transition"
-          >
-            Talk to Us
-          </a>
+          <a href="#" className="btn-primary">Get Started</a>
+          <a href="#" className="btn-secondary">Talk to Us</a>
         </div>
       </motion.div>
     </section>
