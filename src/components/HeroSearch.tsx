@@ -1,25 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motionVariants";
+import lightVideoUrl from "@/assets/main-light.webm?url";
+import darkVideoUrl from "@/assets/main-dark.webm?url";
 
 const popularTags = ["interior-designing", "Interior", "furnitures-decors", "Bathroom"];
+
+function HeroVideo() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const el = document.documentElement;
+    setIsDark(el.classList.contains("dark"));
+    const observer = new MutationObserver(() => setIsDark(el.classList.contains("dark")));
+    observer.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      key={isDark ? "dark" : "light"}
+      src={isDark ? darkVideoUrl : lightVideoUrl}
+      autoPlay
+      muted
+      playsInline
+      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "right center", display: "block" }}
+    />
+  );
+}
 
 export function HeroSearch() {
   const [location, setLocation] = useState("");
   const [focused, setFocused] = useState(false);
 
   return (
-    <section className="relative min-h-[88vh] flex items-center border-b border-border overflow-hidden">
-      {/* Warm ambient glow */}
+    <section
+      className="border-b border-border"
+      style={{ position: "relative", minHeight: "88vh", overflow: "hidden" }}
+    >
+      {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0 ambient-top" />
 
-      {/* Content */}
+      {/* Video — 70% wide from the right, full section height, fully visible (no crop) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+        style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "70%" }}
+      >
+        <HeroVideo />
+      </motion.div>
+
+      {/* Text — left side, flows freely, may overlap video */}
       <motion.div
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-[900px] w-full px-6 py-44 text-center"
+        style={{
+          position: "relative",
+          paddingTop: 140,
+          paddingBottom: 120,
+          paddingLeft: 64,
+          maxWidth: 560,
+        }}
       >
         <motion.p variants={fadeUp} className="eyebrow">
           India's Premium Interior Marketplace
@@ -27,15 +71,15 @@ export function HeroSearch() {
 
         <motion.h1
           variants={fadeUp}
-          className="mt-6 mx-auto"
           style={{
             fontFamily: "Poppins, sans-serif",
-            fontSize: "clamp(44px, 7vw, 80px)",
+            fontSize: "clamp(38px, 5.2vw, 72px)",
             fontWeight: 600,
-            lineHeight: 1.2,
+            lineHeight: 1.15,
             letterSpacing: "-0.05em",
             color: "var(--foreground)",
-            maxWidth: 820,
+            marginTop: 20,
+            marginBottom: 0,
           }}
         >
           Find Anything
@@ -43,11 +87,28 @@ export function HeroSearch() {
           For Your Dream Space.
         </motion.h1>
 
+        <motion.p
+          variants={fadeUp}
+          style={{
+            fontFamily: "Poppins, sans-serif",
+            fontSize: 16,
+            fontWeight: 400,
+            lineHeight: 1.75,
+            color: "var(--muted-foreground)",
+            marginTop: 18,
+            marginBottom: 0,
+            maxWidth: 420,
+          }}
+        >
+          Connect with top designers, source premium materials, and bring your interior vision to life — all in one place.
+        </motion.p>
+
         {/* Search bar */}
         <motion.div
           variants={fadeUp}
-          className="mt-12 flex gap-3 max-w-lg mx-auto"
+          className="flex gap-3"
           style={{
+            marginTop: 36,
             borderRadius: 100,
             transition: "box-shadow 0.3s",
             boxShadow: focused
@@ -87,9 +148,9 @@ export function HeroSearch() {
         {/* Popular tags */}
         <motion.div
           variants={fadeUp}
-          className="mt-6 flex flex-wrap items-center justify-center gap-2"
+          style={{ marginTop: 20, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}
         >
-          <span style={{ fontFamily:"Poppins", fontSize:11, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.14em", color:"var(--muted-foreground)" }}>
+          <span style={{ fontFamily: "Poppins", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--muted-foreground)" }}>
             What's popular:
           </span>
           {popularTags.map((tag) => (

@@ -214,6 +214,16 @@
 }
 .ambient-pulse { animation: ambient-pulse 3.5s ease-in-out infinite; }
 
+/* Logo spin — used by PageLoader */
+@keyframes logo-spin {
+  to { transform: rotate(360deg); }
+}
+.logo-spin {
+  animation: logo-spin 1.1s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
 /* Film grain */
 body::before {
   content: '';

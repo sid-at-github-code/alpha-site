@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import logo from "@/assets/Alphafirms-logo-modified.png";
 
 const links = [
   { href: "/homeowners", label: "For Homeowners" },
@@ -76,11 +77,11 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <Link
-          to="/"
-          style={{ fontFamily:"Poppins,sans-serif", fontSize:20, fontWeight:700, color:"var(--foreground)", textDecoration:"none", letterSpacing:"-0.03em" }}
-        >
-          Alpha Firms
+        <Link to="/" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
+          <img src={logo} alt="AlphaFirms" style={{ height:36, width:36, objectFit:"contain" }} />
+          <span style={{ fontFamily:"Poppins,sans-serif", fontSize:18, fontWeight:700, color:"var(--foreground)", letterSpacing:"-0.03em" }}>
+            Alpha Firms
+          </span>
         </Link>
 
         <ul className="hidden lg:flex items-center gap-7" style={{ listStyle:"none" }}>
