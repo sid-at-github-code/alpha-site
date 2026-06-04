@@ -105,7 +105,7 @@ export function Navbar() {
 
         <div className="hidden lg:flex items-center gap-2">
           <a href="#" style={{ ...linkStyle, fontSize: 10 }}>Log In</a>
-          <a href="#" style={{ ...linkStyle, fontSize: 10 }}>Register</a>
+          <Link to="/signup" style={{ ...linkStyle, fontSize: 10 }}>Register</Link>
           <DarkToggle size={27} iconSize={11} />
           <Link to="/homeowners" className="btn-primary"
             style={{ minWidth: 98, minHeight: 30, fontSize: 10, padding: "0 15px" }}

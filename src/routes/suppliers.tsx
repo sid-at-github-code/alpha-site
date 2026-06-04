@@ -8,6 +8,7 @@ import { Timeline } from "@/components/shared/Timeline";
 import { FormField, SelectField, TextAreaField } from "@/components/shared/FormField";
 import { BronzeButton } from "@/components/shared/BronzeButton";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
+import suppliersImg from "@/assets/suppliers.jpg";
 
 export const Route = createFileRoute("/suppliers")({
   head: () => ({
@@ -116,7 +117,7 @@ function SuppliersPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden min-h-screen pt-32 pb-28 md:pt-40 md:pb-36">
+      <section className="relative overflow-hidden min-h-screen pt-16 pb-28 md:pt-20 md:pb-36">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
@@ -141,47 +142,75 @@ function SuppliersPage() {
           )}
         </svg>
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="relative mx-auto max-w-[1120px] px-6"
-        >
-          <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
-            For Material Suppliers & Manufacturers
-          </motion.p>
-          <motion.h1
-            variants={fadeUp}
-            className="font-display font-light text-foreground mt-6"
-            style={{ fontSize: "clamp(54px, 7vw, 96px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}
+        <div className="relative mx-auto max-w-[1120px] px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+          {/* Text */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="flex-1 min-w-0"
           >
-            Your materials are
-            <br />
-            specified before
-            <br />
-            you know the project exists.
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            className="mt-8 text-[18px] text-muted-foreground"
-            style={{ maxWidth: 540, lineHeight: 1.65 }}
-          >
-            On Alpha Firms, your supplier profile is in the room when a designer starts a
-            project brief — not after they've already decided. Be visible where decisions are
-            made.
-          </motion.p>
-          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
-            <a
-              href="#apply"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
+            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
+              For Material Suppliers & Manufacturers
+            </motion.p>
+            <motion.h1
+              variants={fadeUp}
+              className="font-display font-light text-foreground mt-6"
+              style={{ fontSize: "clamp(38px, 4.8vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}
             >
-              List Your Products
-            </a>
-            <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
-              See how it works →
-            </a>
+              Your materials are
+              <br />
+              specified before
+              <br />
+              you know the project exists.
+            </motion.h1>
+            <motion.p
+              variants={fadeUp}
+              className="mt-8 text-[18px] text-muted-foreground"
+              style={{ maxWidth: 540, lineHeight: 1.65 }}
+            >
+              On Alpha Firms, your supplier profile is in the room when a designer starts a
+              project brief — not after they've already decided. Be visible where decisions are
+              made.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
+              <a
+                href="#apply"
+                className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
+              >
+                List Your Products
+              </a>
+              <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
+                See how it works →
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 40, rotate: -2 }}
+            animate={{ opacity: 1, x: 0, rotate: -2 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+            className="hidden md:block flex-shrink-0"
+            style={{ width: 420, height: 520 }}
+          >
+            <div style={{
+              width: "100%", height: "100%",
+              borderRadius: 28,
+              overflow: "hidden",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
+              border: "1px solid var(--border)",
+            }}>
+              <img
+                src={suppliersImg}
+                alt="Material suppliers"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </motion.div>
+
+        </div>
       </section>
 
       {/* Problem */}

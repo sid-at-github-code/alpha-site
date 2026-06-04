@@ -36,7 +36,7 @@ export function HeroSearch() {
 
   return (
     <section
-      className="border-b border-border bg-white dark:bg-background"
+      className="border-b border-border bg-[#f9fbfe] dark:bg-[#192127]"
       style={{ position: "relative", minHeight: "88vh", overflow: "hidden" }}
     >
 

@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import homeOwnersLight from "@/assets/home-owners.jpg";
+const homeOwnersDark = new URL("../assets/hoome-owners-dark .png", import.meta.url).href;
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -98,6 +100,26 @@ const testimonials = [
   },
 ];
 
+function HomeownerHeroImage() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const el = document.documentElement;
+    setIsDark(el.classList.contains("dark"));
+    const observer = new MutationObserver(() => setIsDark(el.classList.contains("dark")));
+    observer.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <img
+      src={isDark ? homeOwnersDark : homeOwnersLight}
+      alt="For Homeowners"
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+    />
+  );
+}
+
 function HomeownersPage() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -106,71 +128,62 @@ function HomeownersPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden min-h-screen pt-32 pb-28 md:pt-40 md:pb-36">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 50% at 95% 0%, rgba(184,149,106,0.08), transparent)",
-          }}
-        />
-        <svg
-          aria-hidden
-          className="pointer-events-none absolute right-0 top-0 w-[700px] h-[700px] hidden md:block"
-          viewBox="0 0 700 700"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          style={{ opacity: 0.04 }}
-        >
-          {Array.from({ length: 14 }).map((_, i) => (
-            <line key={`h${i}`} x1="0" y1={i * 50} x2="700" y2={i * 50} />
-          ))}
-          {Array.from({ length: 14 }).map((_, i) => (
-            <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="700" />
-          ))}
-        </svg>
+      <section className="relative overflow-hidden min-h-screen pt-16 pb-28 md:pt-20 md:pb-36">
+        <div className="relative mx-auto max-w-[1120px] px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="relative mx-auto max-w-[1120px] px-6"
-        >
-          <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
-            For Homeowners & Property Owners
-          </motion.p>
-          <motion.h1
-            variants={fadeUp}
-            className="font-display font-light text-foreground mt-6"
-            style={{ fontSize: "clamp(54px, 7vw, 96px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}
+          {/* Text */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="flex-1 min-w-0"
           >
-            The right designer
-            <br />
-            exists. We find them.
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            className="mt-8 text-[18px] text-muted-foreground"
-            style={{ maxWidth: 520, lineHeight: 1.65 }}
-          >
-            Tell Alpha Firms what you're building. We match you with verified interior
-            professionals whose track record fits your exact project — not just whoever's
-            available.
-          </motion.p>
-          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
-            <a
-              href="#brief"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
+            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
+              For Homeowners & Property Owners
+            </motion.p>
+            <motion.h1
+              variants={fadeUp}
+              className="font-display font-light text-foreground mt-6"
+              style={{ fontSize: "clamp(54px, 7vw, 96px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}
             >
-              Find My Designer
-            </a>
-            <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
-              How matching works →
-            </a>
+              The right designer
+              <br />
+              exists. We find them.
+            </motion.h1>
+            <motion.p
+              variants={fadeUp}
+              className="mt-8 text-[18px] text-muted-foreground"
+              style={{ maxWidth: 520, lineHeight: 1.65 }}
+            >
+              Tell Alpha Firms what you're building. We match you with verified interior
+              professionals whose track record fits your exact project — not just whoever's
+              available.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
+              <a
+                href="#brief"
+                className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
+              >
+                Find My Designer
+              </a>
+              <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
+                How matching works →
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Image — switches with theme, plain no card */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+            className="hidden md:block flex-shrink-0"
+            style={{ width: 420, height: 520 }}
+          >
+            <HomeownerHeroImage />
+          </motion.div>
+
+        </div>
       </section>
 
       {/* Three fears */}

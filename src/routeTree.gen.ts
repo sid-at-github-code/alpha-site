@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SuppliersRouteImport } from './routes/suppliers'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as HomeownersRouteImport } from './routes/homeowners'
 import { Route as DesignersRouteImport } from './routes/designers'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SuppliersRoute = SuppliersRouteImport.update({
   id: '/suppliers',
   path: '/suppliers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeownersRoute = HomeownersRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/designers' | '/homeowners' | '/suppliers'
+  fullPaths: '/' | '/designers' | '/homeowners' | '/signup' | '/suppliers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/designers' | '/homeowners' | '/suppliers'
-  id: '__root__' | '/' | '/designers' | '/homeowners' | '/suppliers'
+  to: '/' | '/designers' | '/homeowners' | '/signup' | '/suppliers'
+  id: '__root__' | '/' | '/designers' | '/homeowners' | '/signup' | '/suppliers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignersRoute: typeof DesignersRoute
   HomeownersRoute: typeof HomeownersRoute
+  SignupRoute: typeof SignupRoute
   SuppliersRoute: typeof SuppliersRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/suppliers'
       fullPath: '/suppliers'
       preLoaderRoute: typeof SuppliersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/homeowners': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignersRoute: DesignersRoute,
   HomeownersRoute: HomeownersRoute,
+  SignupRoute: SignupRoute,
   SuppliersRoute: SuppliersRoute,
 }
 export const routeTree = rootRouteImport
