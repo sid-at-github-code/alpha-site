@@ -36,11 +36,9 @@ export function HeroSearch() {
 
   return (
     <section
-      className="border-b border-border"
+      className="border-b border-border bg-white dark:bg-background"
       style={{ position: "relative", minHeight: "88vh", overflow: "hidden" }}
     >
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute inset-0 ambient-top" />
 
       {/* Video — 70% wide from the right, full section height, fully visible (no crop) */}
       <motion.div
@@ -59,15 +57,15 @@ export function HeroSearch() {
         animate="show"
         style={{
           position: "relative",
-          paddingTop: 140,
+          paddingTop: 120,
           paddingBottom: 120,
           paddingLeft: 64,
           maxWidth: 560,
         }}
       >
-        <motion.p variants={fadeUp} className="eyebrow">
-          India's Premium Interior Marketplace
-        </motion.p>
+        <motion.div variants={fadeUp}>
+          <span className="eyebrow">India's Premium Interior Marketplace</span>
+        </motion.div>
 
         <motion.h1
           variants={fadeUp}
@@ -78,7 +76,7 @@ export function HeroSearch() {
             lineHeight: 1.15,
             letterSpacing: "-0.05em",
             color: "var(--foreground)",
-            marginTop: 20,
+            marginTop: 16,
             marginBottom: 0,
           }}
         >
@@ -127,7 +125,7 @@ export function HeroSearch() {
               flex: 1,
               borderRadius: 100,
               border: "1px solid var(--border)",
-              backgroundColor: "var(--surface-raised)",
+              backgroundColor: "var(--background)",
               padding: "14px 20px",
               fontFamily: "Poppins, sans-serif",
               fontSize: 15,

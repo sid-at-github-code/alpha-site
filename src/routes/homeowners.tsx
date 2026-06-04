@@ -106,7 +106,7 @@ function HomeownersPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-40 pb-28 md:pt-48 md:pb-36">
+      <section className="relative overflow-hidden min-h-screen pt-32 pb-28 md:pt-40 md:pb-36">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"

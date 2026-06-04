@@ -21,7 +21,7 @@ const linkStyle: React.CSSProperties = {
   transition: "color 0.2s",
 };
 
-function DarkToggle() {
+function DarkToggle({ size = 36, iconSize = 15 }: { size?: number; iconSize?: number }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -43,8 +43,8 @@ function DarkToggle() {
         background: "none",
         border: "1px solid var(--border)",
         borderRadius: 100,
-        width: 36,
-        height: 36,
+        width: size,
+        height: size,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -54,7 +54,7 @@ function DarkToggle() {
         flexShrink: 0,
       }}
     >
-      {dark ? <Sun size={15} /> : <Moon size={15} />}
+      {dark ? <Sun size={iconSize} /> : <Moon size={iconSize} />}
     </button>
   );
 }
@@ -72,11 +72,11 @@ export function Navbar() {
 
   return (
     <header
-      className={`nav-glass fixed top-9 inset-x-0 z-50 transition-all duration-300 ${
+      className={`nav-glass fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled ? "border-b border-border" : "border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
+      <nav className="mx-auto flex h-11 max-w-[1280px] items-center justify-between px-6">
         <Link to="/" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
           <img src={logo} alt="AlphaFirms" style={{ height:36, width:36, objectFit:"contain" }} />
           <span style={{ fontFamily:"Poppins,sans-serif", fontSize:18, fontWeight:700, color:"var(--foreground)", letterSpacing:"-0.03em" }}>
@@ -103,12 +103,12 @@ export function Navbar() {
           )}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <a href="#" style={linkStyle}>Log In</a>
-          <a href="#" style={linkStyle}>Register</a>
-          <DarkToggle />
+        <div className="hidden lg:flex items-center gap-2">
+          <a href="#" style={{ ...linkStyle, fontSize: 10 }}>Log In</a>
+          <a href="#" style={{ ...linkStyle, fontSize: 10 }}>Register</a>
+          <DarkToggle size={27} iconSize={11} />
           <Link to="/homeowners" className="btn-primary"
-            style={{ minWidth:130, minHeight:40, fontSize:13, padding:"0 20px" }}
+            style={{ minWidth: 98, minHeight: 30, fontSize: 10, padding: "0 15px" }}
           >
             Get Started
           </Link>

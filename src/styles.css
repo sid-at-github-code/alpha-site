@@ -224,6 +224,31 @@
   will-change: transform;
 }
 
+/* ─── Card float bob ────────────────────────────────────────── */
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float-bob {
+  animation: float-bob 3s ease-in-out infinite;
+}
+
+/* ─── Category orbit animation ─────────────────────────────── */
+@keyframes card-orbit {
+  from { transform: rotate(0deg)   translateX(148px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(148px) rotate(-360deg); }
+}
+
+.card-orbit-item {
+  position: absolute;
+  top: 0; left: 0;
+  animation: card-orbit 20s linear infinite;
+}
+
+.orbit-pause-on-hover:hover .card-orbit-item {
+  animation-play-state: paused;
+}
+
 /* Film grain */
 body::before {
   content: '';

@@ -128,10 +128,6 @@ export function Hero() {
               >
                 {c.headline}
               </h3>
-              <p className="mt-5" style={{ fontSize: 15, lineHeight: 1.7, color: "var(--muted-foreground)" }}>
-                {c.body}
-              </p>
-
               <motion.ul
                 initial="hidden"
                 animate="show"

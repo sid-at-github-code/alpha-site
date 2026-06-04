@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import { TopBar } from "@/components/TopBar";
 import { Navbar } from "@/components/Navbar";
 import { HeroSearch } from "@/components/HeroSearch";
-import { CategoryStrip } from "@/components/CategoryStrip";
 import { Hero } from "@/components/Hero";
 import { FeaturedCategories } from "@/components/FeaturedCategories";
 import { FeaturedAds } from "@/components/FeaturedAds";
@@ -45,11 +43,9 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <TopBar />
       <Navbar />
 
       <HeroSearch />
-      <CategoryStrip />
       <Hero />
 
       <FeaturedCategories />
