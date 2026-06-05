@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motionVariants";
+import { GooeyText } from "@/components/ui/gooey-text";
 
 const columns = [
   {
@@ -44,24 +45,15 @@ export function Hero() {
         <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
           The Interior Economy, Organized
         </motion.p>
-        <motion.h1
-          variants={fadeUp}
-          className="mt-6 mx-auto"
-          style={{
-            fontFamily: "Poppins, sans-serif",
-            fontSize: "clamp(44px, 6.5vw, 80px)",
-            fontWeight: 600,
-            lineHeight: 1.15,
-            letterSpacing: "-0.05em",
-            color: "var(--foreground)",
-          }}
-        >
-          Every space.
-          <br />
-          Every professional.
-          <br />
-          One address.
-        </motion.h1>
+        <motion.div variants={fadeUp} className="mt-6 mx-auto w-full">
+          <GooeyText
+            texts={["Every space.", "Every professional.", "One address."]}
+            morphTime={1}
+            cooldownTime={0.25}
+            className="h-[72px] md:h-[110px]"
+            textClassName="font-semibold [letter-spacing:-0.05em] [font-family:Poppins,sans-serif]"
+          />
+        </motion.div>
         <motion.p
           variants={fadeUp}
           className="mt-8 mx-auto"

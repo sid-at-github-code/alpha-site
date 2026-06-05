@@ -1,12 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { Timeline } from "@/components/shared/Timeline";
-import { FormField, SelectField, TextAreaField } from "@/components/shared/FormField";
-import { BronzeButton } from "@/components/shared/BronzeButton";
+import { FeatureSteps } from "@/components/ui/feature-steps";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 import suppliersImg from "@/assets/suppliers.jpg";
 
@@ -14,76 +11,32 @@ export const Route = createFileRoute("/suppliers")({
   head: () => ({
     meta: [
       { title: "For Suppliers & Manufacturers — Alpha Firms" },
-      {
-        name: "description",
-        content:
-          "Your catalog, in front of every active interior project. Alpha Firms surfaces supplier profiles when designers are specifying.",
-      },
+      { name: "description", content: "Your catalog, in front of every active interior project. Alpha Firms surfaces supplier profiles when designers are specifying." },
       { property: "og:title", content: "For Suppliers — Alpha Firms" },
-      {
-        property: "og:description",
-        content: "B2B lead generation built for how materials actually get specified.",
-      },
+      { property: "og:description", content: "B2B lead generation built for how materials actually get specified." },
     ],
   }),
   component: SuppliersPage,
 });
 
 const problems = [
-  {
-    n: "01",
-    body: "Sales cycles are long because you don't know who's buying until after the decision is made.",
-  },
-  {
-    n: "02",
-    body: "Trade shows and catalogs reach professionals once a year, if you're lucky.",
-  },
-  {
-    n: "03",
-    body: "Cold outreach to designers has a response rate that barely rounds up.",
-  },
-  {
-    n: "04",
-    body: "You compete on price because you can't differentiate on relevance.",
-  },
+  { n: "01", body: "Sales cycles are long because you don't know who's buying until after the decision is made." },
+  { n: "02", body: "Trade shows and catalogs reach professionals once a year, if you're lucky." },
+  { n: "03", body: "Cold outreach to designers has a response rate that barely rounds up." },
+  { n: "04", body: "You compete on price because you can't differentiate on relevance." },
 ];
 
 const steps = [
-  {
-    n: "01",
-    title: "Build Your Catalog Profile",
-    body: "List your products by category, material type, and price range. Add photos, spec sheets, and MOQ information. Your catalog, structured for how designers actually search.",
-  },
-  {
-    n: "02",
-    title: "Set Your Target Market",
-    body: "Residential? Commercial? Hospitality? Geographic focus? You control who sees you and for what project types.",
-  },
-  {
-    n: "03",
-    title: "Surface in Matching",
-    body: "When a designer starts a project that needs what you make, your profile appears. No bidding. No cold outreach. Just qualified visibility.",
-  },
-  {
-    n: "04",
-    title: "Convert to Business",
-    body: "Designers reach out through the platform. Quotes, samples, and orders flow from there. Alpha Firms handles the introduction. The relationship is yours.",
-  },
+  { step: "Step 01", title: "Build Your Catalog Profile", content: "List your products by category, material type, and price range. Add photos, spec sheets, and MOQ information. Your catalog, structured for how designers actually search.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" },
+  { step: "Step 02", title: "Set Your Target Market", content: "Residential? Commercial? Hospitality? Geographic focus? You control who sees you and for what project types.", image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=900&q=80" },
+  { step: "Step 03", title: "Surface in Matching", content: "When a designer starts a project that needs what you make, your profile appears. No bidding. No cold outreach. Just qualified visibility.", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80" },
+  { step: "Step 04", title: "Convert to Business", content: "Designers reach out through the platform. Quotes, samples, and orders flow from there. Alpha Firms handles the introduction. The relationship is yours.", image: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=900&q=80" },
 ];
 
 const benefits = [
-  {
-    title: "Precision Visibility",
-    body: "Your products are surfaced to designers who need exactly your category — not every designer on the platform. Quality of visibility over quantity.",
-  },
-  {
-    title: "A Catalog, Not Just a Listing",
-    body: "Upload full product details: dimensions, finishes, material composition, lead times, pricing tiers. Give designers everything they need to specify with confidence.",
-  },
-  {
-    title: "B2B Lead Generation That Works",
-    body: "Every enquiry you receive has already been filtered by project type and material need. These are not cold leads. They are warm, specific, and ready to move.",
-  },
+  { title: "Precision Visibility", body: "Your products are surfaced to designers who need exactly your category — not every designer on the platform. Quality of visibility over quantity." },
+  { title: "A Catalog, Not Just a Listing", body: "Upload full product details: dimensions, finishes, material composition, lead times, pricing tiers. Give designers everything they need to specify with confidence." },
+  { title: "B2B Lead Generation That Works", body: "Every enquiry you receive has already been filtered by project type and material need. These are not cold leads. They are warm, specific, and ready to move." },
 ];
 
 const stats = [
@@ -93,345 +46,151 @@ const stats = [
   { value: "50+", label: "Suppliers Listed" },
 ];
 
-const categories = [
-  "Tiles & Stone",
-  "Furniture",
-  "Lighting",
-  "Fabric & Upholstery",
-  "Hardware & Fixtures",
-  "Paint & Finishes",
-  "Flooring",
-  "Sanitaryware",
-  "Other",
-];
-
 function SuppliersPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedCats, setSelectedCats] = useState<string[]>([]);
-
-  const toggle = (c: string) =>
-    setSelectedCats((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]));
-
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Hero */}
+      {/* ── Hero ── */}
       <section className="relative overflow-hidden min-h-screen pt-16 pb-28 md:pt-20 md:pb-36">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 5% 100%, rgba(184,149,106,0.07), transparent)",
-          }}
-        />
-        <svg
-          aria-hidden
-          className="pointer-events-none absolute right-0 bottom-0 w-[800px] h-[500px] hidden md:block"
-          viewBox="0 0 800 500"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          style={{ opacity: 0.035 }}
-        >
+        {/* Ambient glows */}
+        <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 65% 55% at 78% 18%, rgba(248,123,84,0.09), transparent 65%), radial-gradient(ellipse 50% 45% at 5% 88%, rgba(248,123,84,0.06), transparent 55%)" }} />
+        <div className="pointer-events-none absolute -top-28 -right-28 w-[520px] h-[520px] rounded-full" style={{ background: "radial-gradient(circle, rgba(248,123,84,0.08) 0%, transparent 70%)", filter: "blur(55px)" }} />
+        {/* Grid pattern */}
+        <svg aria-hidden className="pointer-events-none absolute right-0 bottom-0 w-[800px] h-[500px] hidden md:block"
+          viewBox="0 0 800 500" fill="none" stroke="currentColor" strokeWidth="0.5" style={{ opacity: 0.045 }}>
           {Array.from({ length: 16 }).map((_, r) =>
             Array.from({ length: 26 }).map((__, c) => (
               <rect key={`${r}-${c}`} x={c * 32} y={r * 32} width="28" height="28" />
-            )),
+            ))
           )}
         </svg>
 
         <div className="relative mx-auto max-w-[1120px] px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
-
           {/* Text */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            className="flex-1 min-w-0"
-          >
-            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
-              For Material Suppliers & Manufacturers
-            </motion.p>
-            <motion.h1
-              variants={fadeUp}
-              className="font-display font-light text-foreground mt-6"
-              style={{ fontSize: "clamp(38px, 4.8vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}
-            >
+          <motion.div variants={stagger} initial="hidden" animate="show" className="flex-1 min-w-0">
+            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>For Material Suppliers & Manufacturers</motion.p>
+            <motion.h1 variants={fadeUp} className="font-display font-light text-foreground mt-6"
+              style={{ fontSize: "clamp(38px, 4.8vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}>
               Your materials are
-              <br />
-              specified before
-              <br />
-              you know the project exists.
+              <br />specified before
+              <br />you know the project exists.
             </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-8 text-[18px] text-muted-foreground"
-              style={{ maxWidth: 540, lineHeight: 1.65 }}
-            >
-              On Alpha Firms, your supplier profile is in the room when a designer starts a
-              project brief — not after they've already decided. Be visible where decisions are
-              made.
+            <motion.p variants={fadeUp} className="mt-8 text-[18px] text-muted-foreground" style={{ maxWidth: 540, lineHeight: 1.65 }}>
+              On Alpha Firms, your supplier profile is in the room when a designer starts a project brief — not after they've already decided. Be visible where decisions are made.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
-              <a
-                href="#apply"
-                className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white hover:opacity-90 transition"
-              >
+              <a href="/signup"
+                className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white transition"
+                style={{ boxShadow: "0 4px 20px rgba(248,123,84,0.30)" }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 5px rgba(248,123,84,0.18), 0 8px 28px rgba(248,123,84,0.38)")}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(248,123,84,0.30)")}>
                 List Your Products
               </a>
-              <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
-                See how it works →
-              </a>
+              <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">See how it works →</a>
             </motion.div>
           </motion.div>
 
           {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 40, rotate: -2 }}
-            animate={{ opacity: 1, x: 0, rotate: -2 }}
+          <motion.div initial={{ opacity: 0, x: 40, rotate: -2 }} animate={{ opacity: 1, x: 0, rotate: -2 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
-            className="hidden md:block flex-shrink-0"
-            style={{ width: 420, height: 520 }}
-          >
-            <div style={{
-              width: "100%", height: "100%",
-              borderRadius: 28,
-              overflow: "hidden",
-              boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
-              border: "1px solid var(--border)",
-            }}>
-              <img
-                src={suppliersImg}
-                alt="Material suppliers"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
+            className="hidden md:block flex-shrink-0" style={{ width: 420, height: 520 }}>
+            <div style={{ width: "100%", height: "100%", borderRadius: 28, overflow: "hidden",
+              boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 8px 32px rgba(248,123,84,0.08), 0 0 0 1px var(--border)" }}>
+              <img src={suppliersImg} alt="Material suppliers" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </div>
           </motion.div>
-
         </div>
       </section>
 
-      {/* Problem */}
-      <section className="py-28 border-t border-border">
+      {/* ── Problem ── */}
+      <section className="py-28 border-t border-border" style={{ background: "linear-gradient(180deg, var(--surface) 0%, var(--background) 100%)" }}>
         <div className="mx-auto max-w-[1120px] px-6 grid gap-16 md:grid-cols-2 items-start">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            variants={stagger}
-          >
-            <motion.h2
-              variants={fadeUp}
-              className="font-display font-light text-foreground"
-              style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
-            >
+          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}>
+            <motion.h2 variants={fadeUp} className="font-display font-light text-foreground"
+              style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               Great materials don't find designers on their own.
             </motion.h2>
-            <div className="mt-10 space-y-6">
+            <div className="mt-10 space-y-5">
               {problems.map((p) => (
-                <motion.div key={p.n} variants={fadeUp} className="flex gap-5">
-                  <span className="font-mono text-[11px] text-accent uppercase tracking-[0.16em] pt-1 shrink-0">
-                    {p.n}
-                  </span>
-                  <p className="text-[15.5px] text-foreground" style={{ lineHeight: 1.55 }}>
-                    {p.body}
-                  </p>
+                <motion.div key={p.n} variants={fadeUp}
+                  className="flex gap-5 p-4 rounded-xl"
+                  style={{ backgroundColor: "var(--surface-raised)", border: "1px solid var(--border)", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}>
+                  <span className="font-mono text-[11px] text-accent uppercase tracking-[0.16em] pt-0.5 shrink-0">{p.n}</span>
+                  <p className="text-[15px] text-foreground" style={{ lineHeight: 1.55 }}>{p.body}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            variants={fadeUp}
-            className="rounded-2xl border border-border bg-surface p-10"
-            style={{ borderLeft: "3px solid var(--accent)" }}
-          >
-            <p
-              className="font-display italic text-accent"
-              style={{ fontSize: 24, lineHeight: 1.35 }}
-            >
+          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp}
+            className="rounded-2xl p-10 relative overflow-hidden"
+            style={{ backgroundColor: "var(--surface-raised)", borderLeft: "3px solid var(--accent)", border: "1px solid var(--border)", borderLeftWidth: 3, borderLeftColor: "var(--accent)", boxShadow: "0 8px 40px rgba(0,0,0,0.10), 0 0 60px rgba(248,123,84,0.06), inset 0 0 40px rgba(248,123,84,0.03)" }}>
+            <div className="pointer-events-none absolute top-0 left-0 w-40 h-40" style={{ background: "radial-gradient(circle, rgba(248,123,84,0.08) 0%, transparent 70%)" }} />
+            <p className="font-display italic text-accent relative" style={{ fontSize: 24, lineHeight: 1.35 }}>
               "Alpha Firms puts your catalog inside the design process — not beside it."
             </p>
-            <p className="mt-6 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>
-              When a designer on Alpha Firms begins a project, they see supplier profiles that
-              match their material needs. Your catalog, your pricing, your story — at the exact
-              moment they're specifying.
+            <p className="mt-6 text-[15px] text-muted-foreground relative" style={{ lineHeight: 1.65 }}>
+              When a designer on Alpha Firms begins a project, they see supplier profiles that match their material needs. Your catalog, your pricing, your story — at the exact moment they're specifying.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* How */}
+      {/* ── How it works ── */}
       <section id="how" className="py-28 border-t border-border">
         <div className="mx-auto max-w-[1120px] px-6">
-          <SectionHeading
-            eyebrow="How It Works"
-            title="A supplier profile that generates pipeline."
-          />
-          <Timeline steps={steps} />
+          <SectionHeading eyebrow="How It Works" title="A supplier profile that generates pipeline." />
+          <FeatureSteps features={steps} autoPlayInterval={4000} />
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-28 border-t border-border">
-        <div className="mx-auto max-w-[1120px] px-6">
+      {/* ── Benefits ── */}
+      <section className="py-28 border-t border-border relative overflow-hidden" style={{ background: "linear-gradient(135deg, var(--surface) 0%, var(--background) 100%)" }}>
+        <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 55% 50% at 50% 100%, rgba(248,123,84,0.05), transparent)" }} />
+        <div className="relative mx-auto max-w-[1120px] px-6">
           <SectionHeading title="Built for the way materials actually get specified." />
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            variants={stagger}
-            className="mt-16 grid gap-8 md:grid-cols-3"
-          >
+          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
+            className="mt-16 grid gap-6 md:grid-cols-3">
             {benefits.map((b) => (
-              <motion.div
-                key={b.title}
-                variants={fadeUp}
-                className="border-t border-accent pt-6"
-              >
-                <h3 className="font-display font-light text-foreground" style={{ fontSize: 26 }}>
-                  {b.title}
-                </h3>
-                <p className="mt-4 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>
-                  {b.body}
-                </p>
+              <motion.div key={b.title} variants={fadeUp}
+                whileHover={{ y: -6, transition: { duration: 0.22 } }}
+                className="rounded-2xl p-7 relative overflow-hidden"
+                style={{ backgroundColor: "var(--surface-raised)", border: "1px solid var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
+                <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: "linear-gradient(90deg, var(--accent), transparent)" }} />
+                <h3 className="font-display font-light text-foreground" style={{ fontSize: 22 }}>{b.title}</h3>
+                <p className="mt-4 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>{b.body}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Stats */}
+      {/* ── Stats ── */}
       <section className="py-28 border-t border-border">
         <div className="mx-auto max-w-[1120px] px-6">
           <SectionHeading align="center" title="The opportunity, in numbers." />
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 md:divide-x divide-border">
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: "var(--border)" }}>
             {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial="hidden"
-                whileInView="show"
-                viewport={viewportOnce}
-                variants={fadeUp}
-                transition={{ delay: i * 0.08 }}
-                className="px-2 md:px-8 py-6 text-center"
-              >
-                <p
-                  className="font-display font-light text-foreground"
-                  style={{ fontSize: "clamp(48px, 7vw, 80px)", lineHeight: 1 }}
-                >
+              <motion.div key={s.label} initial="hidden" whileInView="show" viewport={viewportOnce}
+                variants={fadeUp} transition={{ delay: i * 0.08 }}
+                className="px-6 py-10 text-center"
+                style={{ backgroundColor: "var(--background)" }}>
+                <p className="font-display font-light"
+                  style={{
+                    fontSize: "clamp(44px, 6vw, 72px)", lineHeight: 1,
+                    background: "linear-gradient(135deg, var(--foreground) 30%, var(--accent) 100%)",
+                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                  }}>
                   {s.value}
                 </p>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {s.label}
-                </p>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{s.label}</p>
               </motion.div>
             ))}
           </div>
           <p className="mt-10 text-center text-[13px] text-muted-foreground">
-            Every project on Alpha Firms consumes materials. Every designer on the platform is
-            your potential specifier.
+            Every project on Alpha Firms consumes materials. Every designer on the platform is your potential specifier.
           </p>
-        </div>
-      </section>
-
-      {/* Form */}
-      <section id="apply" className="py-28 border-t border-border">
-        <div className="mx-auto max-w-[660px] px-6">
-          <SectionHeading
-            align="center"
-            title="Join the network."
-            subtitle="Get your catalog in front of active designers within 48 hours."
-          />
-
-          {submitted ? (
-            <p
-              className="mt-14 text-center font-display italic text-foreground"
-              style={{ fontSize: 22, lineHeight: 1.45 }}
-            >
-              We've received your application. Expect to hear from us within 48 hours.
-            </p>
-          ) : (
-            <form
-              onSubmit={(e: FormEvent) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-              className="mt-14 space-y-5"
-            >
-              <FormField label="Company / Brand Name" id="company" required />
-              <FormField label="Contact Person Name" id="name" required />
-              <FormField label="Email Address" id="email" type="email" required />
-              <FormField label="Phone Number" id="phone" type="tel" required />
-              <FormField label="City / Primary Location" id="city" required />
-
-              <div>
-                <p className="block mb-3 font-sans text-[12px] text-muted-foreground">
-                  Product Category
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((c) => {
-                    const active = selectedCats.includes(c);
-                    return (
-                      <button
-                        type="button"
-                        key={c}
-                        onClick={() => toggle(c)}
-                        className={`rounded-full px-4 py-2 text-[12.5px] transition border ${
-                          active
-                            ? "bg-accent text-white border-accent"
-                            : "bg-[var(--accent-light)] text-foreground border-[var(--accent-light)] hover:border-accent"
-                        }`}
-                      >
-                        {c}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <SelectField
-                label="Price Segment"
-                id="segment"
-                options={["Budget", "Mid-Range", "Premium", "Luxury"]}
-                required
-              />
-
-              <div>
-                <p className="block mb-2 font-sans text-[12px] text-muted-foreground">
-                  Do you supply nationally or regionally?
-                </p>
-                <div className="flex gap-6 pt-1">
-                  {["National", "Regional", "Both"].map((o) => (
-                    <label key={o} className="flex items-center gap-2 text-[14px] text-foreground cursor-pointer">
-                      <input type="radio" name="reach" value={o} className="accent-[var(--accent)]" />
-                      {o}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <FormField label="Catalog / Website URL (optional)" id="url" type="url" />
-              <TextAreaField
-                label="Tell us about your products"
-                id="desc"
-                rows={4}
-                placeholder="What do you make, what makes it distinctive, and who typically specifies it?"
-              />
-
-              <BronzeButton type="submit" className="w-full py-4">
-                Submit Supplier Application
-              </BronzeButton>
-              <p className="text-[11px] text-muted-foreground text-center" style={{ lineHeight: 1.5 }}>
-                Applications reviewed within 48 hours. No listing fees until you're approved.
-              </p>
-            </form>
-          )}
         </div>
       </section>
 

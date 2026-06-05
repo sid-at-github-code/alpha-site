@@ -7,13 +7,7 @@ import { FeaturedCategories } from "@/components/FeaturedCategories";
 import { FeaturedAds } from "@/components/FeaturedAds";
 import { EcosystemDiagram } from "@/components/EcosystemDiagram";
 import { HowItWorks } from "@/components/HowItWorks";
-import { WhyAlphaFirms } from "@/components/WhyAlphaFirms";
-import { PlatformValue } from "@/components/PlatformValue";
-import { Stats } from "@/components/Stats";
-import { Testimonials } from "@/components/Testimonials";
-import { BlogNews } from "@/components/BlogNews";
-import { Newsletter } from "@/components/Newsletter";
-import { CTA } from "@/components/CTA";
+import { HomeCTA } from "@/components/HomeCTA";
 import { Footer } from "@/components/Footer";
 import { ClientOnly } from "@/components/ClientOnly";
 
@@ -60,13 +54,7 @@ function Index() {
 
       <EcosystemDiagram />
       <HowItWorks />
-      <WhyAlphaFirms />
-      <PlatformValue />
-      <Stats />
-      <Testimonials />
-      <BlogNews />
-      <Newsletter />
-      <CTA />
+      <HomeCTA />
       <Footer />
     </main>
   );
