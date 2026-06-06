@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import homeOwnersLight from "@/assets/home-owners.jpg";
-const homeOwnersDark = new URL("../assets/hoome-owners-dark .png", import.meta.url).href;
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -49,16 +47,8 @@ const testimonials = [
 ];
 
 function HomeownerHeroImage() {
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    const el = document.documentElement;
-    setIsDark(el.classList.contains("dark"));
-    const observer = new MutationObserver(() => setIsDark(el.classList.contains("dark")));
-    observer.observe(el, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
   return (
-    <img src={isDark ? homeOwnersDark : homeOwnersLight} alt="For Homeowners"
+    <img src={homeOwnersLight} alt="For Homeowners"
       style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
   );
 }
@@ -107,11 +97,7 @@ function HomeownersPage() {
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
             className="hidden md:block flex-shrink-0" style={{ width: 420, height: 520 }}>
-            <div style={{ width: "100%", height: "100%", borderRadius: 28, overflow: "hidden",
-              boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 8px 32px rgba(248,123,84,0.08), 0 0 0 1px var(--border)",
-            }}>
-              <HomeownerHeroImage />
-            </div>
+            <HomeownerHeroImage />
           </motion.div>
         </div>
       </section>

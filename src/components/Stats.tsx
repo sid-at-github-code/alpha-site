@@ -23,7 +23,13 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 
   return (
     <span
-      style={{ fontFamily: "Poppins", fontSize: "clamp(48px, 8vw, 88px)", fontWeight: 700, lineHeight: 1, color: "var(--foreground)" }}
+      style={{
+        fontFamily: "Poppins",
+        fontSize: "clamp(48px, 8vw, 88px)",
+        fontWeight: 700,
+        lineHeight: 1,
+        color: "var(--foreground)",
+      }}
     >
       <motion.span ref={ref}>{rounded}</motion.span>
       {suffix}
@@ -33,8 +39,26 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 
 export function Stats() {
   return (
-    <section className="py-32 md:py-40 border-t border-border">
-      <div className="mx-auto max-w-[1120px] px-6">
+    <section
+      className="py-32 md:py-40 border-t border-border bg-surface"
+      style={{ position: "relative", overflow: "hidden" }}
+    >
+      {/* Ambient coral glow at center */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 700,
+          height: 400,
+          background: "radial-gradient(ellipse at center, rgba(248,123,84,0.08) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
         <motion.div
           initial="hidden"
           whileInView="show"
