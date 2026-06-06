@@ -1,10 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import logo from "@/assets/Alphafirms-logo-modified.png";
 
 export function HomeCTA() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef   = useRef<HTMLCanvasElement>(null);
+  const confettiRaf = useRef(0);
+
+  useEffect(() => () => cancelAnimationFrame(confettiRaf.current), []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +58,7 @@ export function HomeCTA() {
         ctx.fill();
         if (p.life <= 0) { particles.splice(i, 1); i--; }
       }
-      requestAnimationFrame(animate);
+      confettiRaf.current = requestAnimationFrame(animate);
     };
     animate();
   };
@@ -116,17 +119,17 @@ export function HomeCTA() {
         >
           <div className="absolute inset-0 hcta-spin">
             <div className="absolute top-1/2 left-1/2" style={{ width: 2000, height: 2000, transform: "translate(-50%,-50%) rotate(279.05deg)" }}>
-              <img src="https://framerusercontent.com/images/oqZEqzDEgSLygmUDuZAYNh2XQ9U.png?scale-down-to=2048" alt="" className="w-full h-full object-cover opacity-25" />
+              <img src="https://framerusercontent.com/images/oqZEqzDEgSLygmUDuZAYNh2XQ9U.png?scale-down-to=2048" alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-25" />
             </div>
           </div>
           <div className="absolute inset-0 hcta-spin-rev">
             <div className="absolute top-1/2 left-1/2" style={{ width: 1000, height: 1000, transform: "translate(-50%,-50%) rotate(304.42deg)" }}>
-              <img src="https://framerusercontent.com/images/UbucGYsHDAUHfaGZNjwyCzViw8.png?scale-down-to=1024" alt="" className="w-full h-full object-cover opacity-35" />
+              <img src="https://framerusercontent.com/images/UbucGYsHDAUHfaGZNjwyCzViw8.png?scale-down-to=1024" alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-35" />
             </div>
           </div>
           <div className="absolute inset-0 hcta-spin">
             <div className="absolute top-1/2 left-1/2" style={{ width: 800, height: 800, transform: "translate(-50%,-50%) rotate(48.33deg)" }}>
-              <img src="https://framerusercontent.com/images/Ans5PAxtJfg3CwxlrPMSshx2Pqc.png" alt="" className="w-full h-full object-cover opacity-50" />
+              <img src="https://framerusercontent.com/images/Ans5PAxtJfg3CwxlrPMSshx2Pqc.png" alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-50" />
             </div>
           </div>
         </div>

@@ -1,0 +1,37 @@
+# AlphaFirms
+
+> India's only trusted interior & living space ecosystem — connecting homeowners, designers, architects, and suppliers on one verified platform.
+
+AlphaFirms is a B2B/B2C marketplace platform founded in 2024, operating across 15+ cities in India with 500+ projects completed. It solves the fragmentation in India's interior design industry by creating a structured, verified network where the right people find each other at the right moment.
+
+## What AlphaFirms Does
+
+AlphaFirms connects three core audiences in India's interior economy:
+
+**For Homeowners & Property Owners** — Submit a 3-minute project brief. Receive 2–4 matched interior designers whose specialty, style, budget range, and availability fit the exact project. Not a directory. A curated match. Every listed designer is portfolio-verified and reference-checked before joining the platform.
+
+**For Interior Designers & Architects** — Receive pre-qualified project briefs that match set criteria (project type, geography, budget range). No cold pitching. No commission on earnings. Designers set their filters; AlphaFirms routes relevant projects directly to their dashboard.
+
+**For Suppliers & Manufacturers** — List product catalogs by category, material, and price range. Gain visibility with active designers at the moment of specification — when materials are actually being selected for a project. B2B lead generation built around how the interior industry actually works.
+
+## Key Facts
+
+- Founded: 2024
+- Cities covered: 15+ across India
+- Projects completed: 500+
+- Verification: Portfolio and references checked before any professional is listed
+- Business model: Marketplace platform (MVP stage as of 2026)
+- Contact: hello@alphafirms.com
+
+## Pages
+
+- [Home](https://www.alphafirms.com/): Platform overview, ecosystem diagram, how it works
+- [For Homeowners](https://www.alphafirms.com/homeowners): Designer matching process for property owners
+- [For Designers](https://www.alphafirms.com/designers): How interior designers and architects receive qualified leads
+- [For Suppliers](https://www.alphafirms.com/suppliers): How material suppliers gain visibility with active project teams
+- [About Us](https://www.alphafirms.com/about): Company background, platform values, network stats, testimonials
+- [Sign Up](https://www.alphafirms.com/signup): Early access registration
+
+## Optional
+
+- [llms-full.txt](https://www.alphafirms.com/llms-full.txt): Full site content for LLM context

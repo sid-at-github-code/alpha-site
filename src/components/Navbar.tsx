@@ -8,8 +8,6 @@ const links = [
   { href: "/designers",  label: "For Designers"  },
   { href: "/suppliers",  label: "For Suppliers"  },
   { href: "/about",      label: "About Us"       },
-  { href: "#trends",     label: "Trends"         },
-  { href: "#contact",    label: "Contact Us"     },
 ];
 
 const linkStyle: React.CSSProperties = {
@@ -78,7 +76,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-11 max-w-[1280px] items-center justify-between px-6">
         <Link to="/" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
-          <img src={logo} alt="AlphaFirms" style={{ height:36, width:36, objectFit:"contain" }} />
+          <img src={logo} alt="AlphaFirms" width={36} height={36} fetchPriority="high" decoding="async" style={{ height:36, width:36, objectFit:"contain" }} />
           <span style={{ fontFamily:"Poppins,sans-serif", fontSize:18, fontWeight:700, color:"var(--foreground)", letterSpacing:"-0.03em" }}>
             Alpha Firms
           </span>
@@ -104,7 +102,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-2">
-          <a href="#" style={{ ...linkStyle, fontSize: 10 }}>Log In</a>
+          <Link to="/signup" style={{ ...linkStyle, fontSize: 10 }}>Log In</Link>
           <Link to="/signup" style={{ ...linkStyle, fontSize: 10 }}>Register</Link>
           <DarkToggle size={27} iconSize={11} />
           <Link to="/homeowners" className="btn-primary"
@@ -143,8 +141,8 @@ export function Navbar() {
               )
             )}
             <li style={{ paddingTop:12, borderTop:"1px solid var(--border)", display:"flex", gap:20 }}>
-              <a href="#" style={{ ...linkStyle, fontSize:13 }}>Log In</a>
-              <a href="#" style={{ ...linkStyle, fontSize:13 }}>Register</a>
+              <Link to="/signup" onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize:13 }}>Log In</Link>
+              <Link to="/signup" onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize:13 }}>Register</Link>
             </li>
           </ul>
         </div>

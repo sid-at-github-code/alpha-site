@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motionVariants";
 import { GooeyText } from "@/components/ui/gooey-text";
 
@@ -36,16 +36,16 @@ export function Hero() {
   return (
     <section className="relative pt-24 md:pt-28 border-t border-border">
       {/* Headline block */}
-      <motion.div
+      <m.div
         variants={stagger}
         initial="hidden"
         animate="show"
         className="relative mx-auto max-w-[1120px] px-6 text-center"
       >
-        <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
+        <m.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
           The Interior Economy, Organized
-        </motion.p>
-        <motion.div variants={fadeUp} className="mt-6 mx-auto w-full">
+        </m.p>
+        <m.div variants={fadeUp} className="mt-6 mx-auto w-full">
           <GooeyText
             texts={["Every space.", "Every professional.", "One address."]}
             morphTime={1}
@@ -53,21 +53,21 @@ export function Hero() {
             className="h-[72px] md:h-[110px]"
             textClassName="font-semibold [letter-spacing:-0.05em] [font-family:Poppins,sans-serif]"
           />
-        </motion.div>
-        <motion.p
+        </m.div>
+        <m.p
           variants={fadeUp}
           className="mt-8 mx-auto"
           style={{ maxWidth: 500, lineHeight: 1.65, color: "var(--muted-foreground)" }}
         >
           Alpha Firms is where interior projects are born — connecting the people who need
           spaces designed, the talent who designs them, and the materials that make it real.
-        </motion.p>
-      </motion.div>
+        </m.p>
+      </m.div>
 
       {/* Three columns */}
       <div className="relative mt-20 grid grid-cols-1 md:grid-cols-3 border-y border-border">
         {columns.map((c, i) => (
-          <motion.a
+          <m.a
             key={c.n}
             href={c.href}
             initial={{ opacity: 0, y: 30 }}
@@ -120,7 +120,7 @@ export function Hero() {
               >
                 {c.headline}
               </h3>
-              <motion.ul
+              <m.ul
                 initial="hidden"
                 animate="show"
                 variants={{ show: { transition: { delayChildren: 0.6 + i * 0.1, staggerChildren: 0.08 } } }}
@@ -128,7 +128,7 @@ export function Hero() {
                 style={{ paddingLeft: 0, listStyle: "none" }}
               >
                 {c.features.map((f) => (
-                  <motion.li
+                  <m.li
                     key={f}
                     variants={fadeUp}
                     style={{
@@ -141,9 +141,9 @@ export function Hero() {
                     }}
                   >
                     {f}
-                  </motion.li>
+                  </m.li>
                 ))}
-              </motion.ul>
+              </m.ul>
 
               <div className="mt-auto pt-10">
                 <span
@@ -159,7 +159,7 @@ export function Hero() {
                 </span>
               </div>
             </div>
-          </motion.a>
+          </m.a>
         ))}
       </div>
 

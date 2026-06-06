@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 
 const features = [
@@ -40,14 +40,14 @@ function FlipCard({ title, body, back, wide }: { title: string; body: string; ba
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <motion.div
+    <m.div
       variants={fadeUp}
       className={wide ? "md:col-span-2" : ""}
       style={{ perspective: 1200, minHeight: 220 }}
       onHoverStart={() => setFlipped(true)}
       onHoverEnd={() => setFlipped(false)}
     >
-      <motion.div
+      <m.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
         style={{
@@ -163,8 +163,8 @@ function FlipCard({ title, body, back, wide }: { title: string; body: string; ba
             {back}
           </p>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -191,7 +191,7 @@ export function WhyAlphaFirms() {
       />
 
       <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -202,9 +202,9 @@ export function WhyAlphaFirms() {
           <h2 className="mt-4 h2-spec text-foreground">
             Built for professionals who don't have time to waste.
           </h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -214,7 +214,7 @@ export function WhyAlphaFirms() {
           {features.map((f) => (
             <FlipCard key={f.title} title={f.title} body={f.body} back={f.back} wide={f.wide} />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

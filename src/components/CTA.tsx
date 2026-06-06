@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useState, Suspense, lazy } from "react";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
@@ -18,19 +19,21 @@ export function CTA() {
         <div className="relative overflow-hidden rounded-[48px] border border-border bg-surface shadow-sm min-h-[600px] flex flex-col items-center justify-center duration-500">
 
           {/* Dithering shader background */}
-          <Suspense fallback={<div className="absolute inset-0 bg-accent/5" />}>
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-30 mix-blend-multiply dark:mix-blend-screen">
-              <Dithering
-                colorBack="#00000000"
-                colorFront="#F87B54"
-                shape="warp"
-                type="4x4"
-                speed={isHovered ? 0.6 : 0.2}
-                className="size-full"
-                minPixelRatio={1}
-              />
-            </div>
-          </Suspense>
+          <ErrorBoundary fallback={<div className="absolute inset-0 bg-accent/5" />}>
+            <Suspense fallback={<div className="absolute inset-0 bg-accent/5" />}>
+              <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-30 mix-blend-multiply dark:mix-blend-screen">
+                <Dithering
+                  colorBack="#00000000"
+                  colorFront="#F87B54"
+                  shape="warp"
+                  type="4x4"
+                  speed={isHovered ? 0.6 : 0.2}
+                  className="size-full"
+                  minPixelRatio={1}
+                />
+              </div>
+            </Suspense>
+          </ErrorBoundary>
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto text-center flex flex-col items-center">
 
@@ -95,7 +98,7 @@ export function CTA() {
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="#"
+                href="mailto:hello@alphafirms.com"
                 className="inline-flex h-14 items-center justify-center rounded-full px-10 text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
                 style={{
                   border: "1.5px solid var(--accent)",

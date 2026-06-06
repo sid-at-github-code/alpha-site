@@ -1,4 +1,4 @@
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { m, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { fadeUp, viewportOnce } from "@/lib/motionVariants";
 
@@ -31,7 +31,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
         color: "var(--foreground)",
       }}
     >
-      <motion.span ref={ref}>{rounded}</motion.span>
+      <m.span ref={ref}>{rounded}</m.span>
       {suffix}
     </span>
   );
@@ -59,7 +59,7 @@ export function Stats() {
       />
 
       <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -70,11 +70,11 @@ export function Stats() {
           <h2 className="mt-4 h2-spec text-foreground">
             The numbers speak for themselves.
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 md:divide-x divide-border">
           {stats.map((s, i) => (
-            <motion.div
+            <m.div
               key={s.label}
               initial="hidden"
               whileInView="show"
@@ -87,7 +87,7 @@ export function Stats() {
               <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {s.label}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

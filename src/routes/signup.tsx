@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motionVariants";
 import logo from "@/assets/Alphafirms-logo-modified.png";
 import signupVideoUrl from "@/assets/signuploop.mp4?url";
@@ -9,9 +9,21 @@ import signupVideoUrl from "@/assets/signuploop.mp4?url";
 export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
-      { title: "Sign Up — Alpha Firms" },
-      { name: "description", content: "Create your Alpha Firms account." },
+      { title: "Sign Up — Join AlphaFirms Early Access" },
+      { name: "description", content: "Join AlphaFirms early access. Register as a homeowner, interior designer, architect, or supplier on India's most trusted interior & living space platform." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Sign Up — Join AlphaFirms Early Access" },
+      { property: "og:description", content: "Join India's interior ecosystem. Register as a homeowner, designer, architect, or supplier." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.alphafirms.com/signup" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "AlphaFirms" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@alphafirms" },
+      { name: "twitter:title", content: "Join AlphaFirms — Early Access" },
+      { name: "twitter:description", content: "Join India's interior ecosystem. Register as a homeowner, designer, architect, or supplier." },
     ],
+    links: [{ rel: "canonical", href: "https://www.alphafirms.com/signup" }],
   }),
   component: SignupPage,
 });
@@ -112,7 +124,7 @@ function SignupPage() {
       }}
     >
       {/* Big split card */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
@@ -183,39 +195,39 @@ function SignupPage() {
           </div>
 
           {submitted ? (
-            <motion.div
+            <m.div
               variants={stagger} initial="hidden" animate="show"
               style={{ textAlign: "center" }}
             >
-              <motion.div variants={fadeUp}
-                style={{ fontSize: 40, marginBottom: 16 }}>🎉</motion.div>
-              <motion.h2 variants={fadeUp}
+              <m.div variants={fadeUp}
+                style={{ fontSize: 40, marginBottom: 16 }}>🎉</m.div>
+              <m.h2 variants={fadeUp}
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: 24, fontWeight: 600,
                   color: "var(--foreground)", margin: "0 0 10px" }}>
                 Welcome aboard!
-              </motion.h2>
-              <motion.p variants={fadeUp}
+              </m.h2>
+              <m.p variants={fadeUp}
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: 14, color: "var(--muted-foreground)", lineHeight: 1.6 }}>
                 Your account is being set up. We'll send a confirmation to <strong>{email}</strong>.
-              </motion.p>
-            </motion.div>
+              </m.p>
+            </m.div>
           ) : (
-            <motion.div variants={stagger} initial="hidden" animate="show">
+            <m.div variants={stagger} initial="hidden" animate="show">
 
-              <motion.p variants={fadeUp} className="eyebrow" style={{ marginBottom: 8 }}>
+              <m.p variants={fadeUp} className="eyebrow" style={{ marginBottom: 8 }}>
                 Get started free
-              </motion.p>
-              <motion.h1
+              </m.p>
+              <m.h1
                 variants={fadeUp}
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(24px, 3vw, 32px)",
                   fontWeight: 600, color: "var(--foreground)", lineHeight: 1.2,
                   letterSpacing: "-0.03em", margin: "0 0 32px" }}
               >
                 Create your account.
-              </motion.h1>
+              </m.h1>
 
               {/* Google OAuth button */}
-              <motion.button
+              <m.button
                 variants={fadeUp}
                 type="button"
                 style={{
@@ -244,10 +256,10 @@ function SignupPage() {
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
                 Continue with Google
-              </motion.button>
+              </m.button>
 
               {/* Divider */}
-              <motion.div
+              <m.div
                 variants={fadeUp}
                 style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}
               >
@@ -257,10 +269,10 @@ function SignupPage() {
                   or
                 </span>
                 <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
-              </motion.div>
+              </m.div>
 
               {/* Email form */}
-              <motion.form variants={fadeUp} onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <m.form variants={fadeUp} onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <InputField
                   id="name" label="Full Name"
                   icon={<User size={14} />}
@@ -294,9 +306,9 @@ function SignupPage() {
                 >
                   Create Account
                 </button>
-              </motion.form>
+              </m.form>
 
-              <motion.p
+              <m.p
                 variants={fadeUp}
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: 12,
                   color: "var(--muted-foreground)", marginTop: 20, textAlign: "center", lineHeight: 1.6 }}
@@ -305,24 +317,24 @@ function SignupPage() {
                 <Link to="/" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
                   Log in
                 </Link>
-              </motion.p>
+              </m.p>
 
-              <motion.p
+              <m.p
                 variants={fadeUp}
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: 11,
                   color: "var(--muted-foreground)", marginTop: 16, textAlign: "center", lineHeight: 1.6 }}
               >
                 By creating an account you agree to our{" "}
-                <a href="#" style={{ color: "var(--accent)", textDecoration: "none" }}>Terms</a>
+                <a href="/terms" style={{ color: "var(--accent)", textDecoration: "none" }}>Terms</a>
                 {" "}and{" "}
-                <a href="#" style={{ color: "var(--accent)", textDecoration: "none" }}>Privacy Policy</a>.
-              </motion.p>
+                <a href="/privacy" style={{ color: "var(--accent)", textDecoration: "none" }}>Privacy Policy</a>.
+              </m.p>
 
-            </motion.div>
+            </m.div>
           )}
         </div>
 
-      </motion.div>
+      </m.div>
     </div>
   );
 }

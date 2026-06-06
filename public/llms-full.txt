@@ -1,0 +1,118 @@
+# AlphaFirms — Full Site Content
+
+> India's only trusted interior & living space ecosystem.
+
+---
+
+## Organization
+
+**Name:** AlphaFirms (also written Alpha Firms)
+**Type:** B2B/B2C Marketplace Platform
+**Industry:** Interior Design, Architecture, Living Spaces
+**Founded:** 2024
+**Stage:** MVP (2026)
+**Geography:** India (15+ cities)
+**Contact:** hello@alphafirms.com
+**Website:** https://www.alphafirms.com
+
+---
+
+## Home Page (/)
+
+AlphaFirms is India's Premium Interior Marketplace.
+
+**Tagline:** Find Anything For Your Dream Space.
+
+**Ecosystem pillars:**
+1. Suppliers — Materials & Catalog
+2. Homeowners — Projects & Briefs
+3. Architects — Design & Planning
+4. Designers — Talent & Portfolio
+5. Investors — Capital & Growth
+6. Lights & Electricals — Fixtures & Systems
+
+**Categories:** Furnitures, Interior, Home Decor, Lighting
+
+---
+
+## For Homeowners (/homeowners)
+
+**Headline:** The right designer exists. We find them.
+
+**Problem:** Most homeowners share three core fears when hiring an interior designer:
+1. "How do I know they're actually good?" — Every designer on AlphaFirms is reviewed before joining. Portfolio verified. References checked.
+2. "What if they go over budget?" — Projects start with a clear brief and a quoted scope. You agree before anything begins.
+3. "What if they don't understand what I want?" — Matching considers style, budget, and project type — not just location.
+
+**How it works:**
+- Step 01: Describe Your Project — Space type, scope, budget, timeline. A 3-minute brief.
+- Step 02: We Match You — AlphaFirms surfaces 2–4 designers whose expertise, style, and availability align. Not 200 profiles. Just the right ones.
+- Step 03: Review & Connect — See each designer's portfolio, past projects, and approach. Connect directly.
+- Step 04: Project Begins — Agree on scope, sign off on a quote, move forward with clarity.
+
+**Key differentiators:**
+- Matched on specialty, not just availability
+- Verified portfolio — real completed projects
+- Transparent pricing from day one
+- One point of contact
+
+---
+
+## For Designers (/designers)
+
+**Headline:** Stop pitching. Start receiving.
+
+**Value proposition:** Qualified interior projects routed directly to designers and contractors who match the brief.
+
+**How it works:**
+- Step 01: Build Your Profile — Upload portfolio, set specialties, define project types. Built once, working always.
+- Step 02: Set Your Criteria — Preferred project size, budget range, geography. You set the filter.
+- Step 03: Receive Matches — When a client project matches your profile, it arrives pre-qualified with a brief already written.
+- Step 04: Win Projects — Review the brief. Express interest. Connect directly. No middlemen, no commission on earnings.
+
+---
+
+## For Suppliers (/suppliers)
+
+**Headline:** Your catalog, in front of every active interior project.
+
+**Problem:** Suppliers face four core challenges:
+1. Sales cycles are long because you don't know who's buying until after the decision is made.
+2. Trade shows and catalogs reach professionals once a year, if you're lucky.
+3. Cold outreach to designers has a response rate that barely rounds up.
+4. You compete on price because you can't differentiate on relevance.
+
+**How it works:**
+- Step 01: Build Your Catalog Profile — List products by category, material type, and price range. Add photos, spec sheets, MOQ information.
+- Step 02: Get Matched to Active Projects — When a designer is specifying for a project that needs your category, your catalog appears.
+- Step 03: Direct Designer Relationships — Connect with designers and architects directly. Build ongoing supply relationships.
+- Step 04: Track Your Reach — See which projects and designers are engaging with your catalog.
+
+---
+
+## About Us (/about)
+
+**Tagline:** We built the room where deals happen.
+
+**Story:** Great interiors were happening despite the platforms — not because of one. Homeowners guessing. Designers cold-pitching. Suppliers invisible until too late. AlphaFirms fixed that.
+
+**Platform values:**
+1. Why AlphaFirms — The interior industry's trust problem is structural. AlphaFirms creates verified, context-aware connections.
+2. Platform — A structured marketplace, not a directory. Verification, matching, and direct connection in one place.
+3. Network — Six pillars: Homeowners, Designers, Suppliers, Architects, Investors, Electricals.
+
+**Stats:** Founded 2024 · 15+ Cities · 500+ Projects · Verified Network · India-first
+
+---
+
+## Sign Up (/signup)
+
+Early access registration for homeowners, designers, and suppliers.
+
+---
+
+## Legal
+
+- Terms of Service: https://www.alphafirms.com/terms
+- Privacy Policy: https://www.alphafirms.com/privacy
+- Contact: hello@alphafirms.com

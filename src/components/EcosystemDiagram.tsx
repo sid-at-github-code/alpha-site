@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState, useEffect } from "react";
 import { fadeUp, viewportOnce } from "@/lib/motionVariants";
 import logo from "@/assets/Alphafirms-logo-modified.png";
@@ -91,7 +91,7 @@ export function EcosystemDiagram() {
       <div className="mx-auto max-w-[1120px] px-6">
 
         {/* ── Heading ── */}
-        <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp} className="max-w-2xl">
+        <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp} className="max-w-2xl">
           <p className="eyebrow">The Network</p>
           <h2 className="mt-4" style={{ fontFamily: "Poppins,sans-serif", fontSize: "clamp(28px,4vw,48px)", fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1.15, color: "var(--foreground)" }}>
             The network that moves
@@ -100,10 +100,10 @@ export function EcosystemDiagram() {
           <p className="mt-5" style={{ color: "var(--muted-foreground)", lineHeight: 1.65 }}>
             Six pillars. One platform. Infinite possibilities.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── Diagram — md+ ── */}
-        <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp} className="mt-8 hidden md:block">
+        <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp} className="mt-8 hidden md:block">
           <div className="relative mx-auto w-full" style={{ maxWidth: VW, aspectRatio: `${VW} / ${VH}` }}>
 
             {/* SVG layer */}
@@ -191,7 +191,7 @@ export function EcosystemDiagram() {
             ))}
 
           </div>
-        </motion.div>
+        </m.div>
 
         {/* ── Mobile fallback ── */}
         <div className="mt-12 md:hidden grid grid-cols-2 gap-3">

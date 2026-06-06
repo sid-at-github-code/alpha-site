@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface FeatureStep {
@@ -51,7 +51,7 @@ export function FeatureSteps({
             const isActive = i === current;
             const isDone   = i < current;
             return (
-              <motion.button
+              <m.button
                 key={i}
                 type="button"
                 onClick={() => jumpTo(i)}
@@ -61,7 +61,7 @@ export function FeatureSteps({
               >
                 {/* Circle */}
                 <div className="shrink-0 mt-0.5">
-                  <motion.div
+                  <m.div
                     className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm font-bold"
                     animate={{
                       borderColor:     isActive ? "#F87B54" : isDone ? "rgba(248,123,84,0.4)" : "var(--border)",
@@ -72,7 +72,7 @@ export function FeatureSteps({
                     style={{ color: isActive ? "#fff" : isDone ? "#F87B54" : "var(--muted-foreground)" }}
                   >
                     {i + 1}
-                  </motion.div>
+                  </m.div>
                 </div>
 
                 {/* Text + progress bar */}
@@ -87,7 +87,7 @@ export function FeatureSteps({
                   {/* Smooth framer-motion progress bar — key forces restart on step change */}
                   {isActive && (
                     <div className="mt-3 h-[2px] w-full rounded-full overflow-hidden" style={{ backgroundColor: "rgba(248,123,84,0.12)" }}>
-                      <motion.div
+                      <m.div
                         key={current}
                         className="h-full rounded-full"
                         style={{ backgroundColor: "#F87B54" }}
@@ -98,7 +98,7 @@ export function FeatureSteps({
                     </div>
                   )}
                 </div>
-              </motion.button>
+              </m.button>
             );
           })}
         </div>
@@ -114,7 +114,7 @@ export function FeatureSteps({
         >
           <AnimatePresence mode="wait">
             {features.map((f, i) => i === current && (
-              <motion.div
+              <m.div
                 key={i}
                 className="absolute inset-0"
                 initial={{ y: 50, opacity: 0, scale: 0.98 }}
@@ -122,7 +122,7 @@ export function FeatureSteps({
                 exit={{   y: -50, opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <img src={f.image} alt={f.title} className="w-full h-full object-cover" />
+                <img src={f.image} alt={f.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
 
                 {/* Step label — no gradient */}
                 <div className="absolute bottom-4 left-5">
@@ -130,7 +130,7 @@ export function FeatureSteps({
                     {f.step}
                   </span>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </AnimatePresence>
 

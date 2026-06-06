@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Suspense, lazy } from "react";
 import { Navbar } from "@/components/Navbar";
 import { WhyAlphaFirms } from "@/components/WhyAlphaFirms";
@@ -19,16 +19,21 @@ const RetroGrid = lazy(() =>
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us - AlphaFirms" },
-      { name: "description", content: "Learn why Alpha Firms is India's most trusted interior ecosystem — our platform, numbers, client stories, and news." },
-      { property: "og:title", content: "About Us - AlphaFirms" },
+      { title: "About AlphaFirms — India's Interior & Living Space Ecosystem" },
+      { name: "description", content: "AlphaFirms was founded in 2024 to fix India's fragmented interior industry. 15+ cities, 500+ projects, one verified network connecting homeowners, designers, architects, and suppliers." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "About AlphaFirms — India's Interior & Living Space Ecosystem" },
+      { property: "og:description", content: "Founded 2024. 15+ cities. 500+ projects. One verified network for India's interior industry." },
       { property: "og:type", content: "website" },
-      { property: "og:locale", content: "en_US" },
+      { property: "og:url", content: "https://www.alphafirms.com/about" },
+      { property: "og:locale", content: "en_IN" },
       { property: "og:site_name", content: "AlphaFirms" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "index, follow" },
+      { name: "twitter:site", content: "@alphafirms" },
+      { name: "twitter:title", content: "About AlphaFirms — India's Interior Ecosystem" },
+      { name: "twitter:description", content: "Founded 2024. 15+ cities. 500+ projects. One verified network for India's interior industry." },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://www.alphafirms.com/about" }],
   }),
   component: About,
 });
@@ -70,24 +75,24 @@ function AboutHero() {
       }} />
 
       {/* Content */}
-      <motion.div
+      <m.div
         variants={stagger}
         initial="hidden"
         animate="show"
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6"
       >
         {/* Eyebrow */}
-        <motion.p variants={fadeUp} style={{
+        <m.p variants={fadeUp} style={{
           fontFamily: "Poppins,sans-serif",
           fontSize: 11, fontWeight: 700,
           textTransform: "uppercase", letterSpacing: "0.22em",
           color: "#F87B54", marginBottom: 24,
         }}>
           About Alpha Firms
-        </motion.p>
+        </m.p>
 
         {/* Headline */}
-        <motion.h1 variants={fadeUp} style={{
+        <m.h1 variants={fadeUp} style={{
           fontFamily: "Poppins,sans-serif",
           fontSize: "clamp(38px, 7vw, 96px)",
           fontWeight: 600,
@@ -100,10 +105,10 @@ function AboutHero() {
           We built the room
           <br />
           <span style={{ color: "#F8FAFD" }}>where deals happen.</span>
-        </motion.h1>
+        </m.h1>
 
         {/* Sub */}
-        <motion.p variants={fadeUp} style={{
+        <m.p variants={fadeUp} style={{
           fontFamily: "Poppins,sans-serif",
           fontSize: "clamp(15px, 1.8vw, 20px)",
           color: "rgba(248,250,253,0.72)",
@@ -114,10 +119,10 @@ function AboutHero() {
           Great interiors were happening despite the platforms — not because of one.
           Homeowners guessing. Designers cold-pitching. Suppliers invisible until too late.
           Alpha Firms fixed that.
-        </motion.p>
+        </m.p>
 
         {/* Stat pills */}
-        <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-2">
+        <m.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-2">
           {pills.map(p => (
             <span key={p} style={{
               fontFamily: "Poppins,sans-serif",
@@ -132,17 +137,38 @@ function AboutHero() {
               {p}
             </span>
           ))}
-        </motion.div>
+        </m.div>
 
-      </motion.div>
+      </m.div>
 
     </section>
   );
 }
 
+const aboutSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://www.alphafirms.com/about#page",
+  "name": "About AlphaFirms",
+  "url": "https://www.alphafirms.com/about",
+  "description": "AlphaFirms was founded in 2024 to fix India's fragmented interior design industry. Operating in 15+ cities with 500+ projects completed, it connects homeowners, designers, architects, and suppliers.",
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": "https://www.alphafirms.com/#organization",
+    "name": "AlphaFirms",
+    "url": "https://www.alphafirms.com",
+    "foundingDate": "2024",
+    "description": "India's only trusted interior & living space ecosystem.",
+    "areaServed": { "@type": "Country", "name": "India" },
+    "knowsAbout": ["Interior Design", "Architecture", "Home Decor", "Interior Materials", "Living Space Design"],
+  },
+});
+
 function About() {
   return (
-    <main className="min-h-screen text-foreground">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: aboutSchema }} />
+      <main className="min-h-screen text-foreground">
       <Navbar />
 
       {/* Hero is always dark (RetroGrid canvas drives its own background) */}
@@ -163,5 +189,6 @@ function About() {
 
       <Footer />
     </main>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Eye, Heart } from "lucide-react";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 
@@ -18,7 +18,7 @@ export function FeaturedAds() {
   return (
     <section className="py-32 md:py-40 border-t border-border">
       <div className="mx-auto max-w-[1120px] px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -26,7 +26,7 @@ export function FeaturedAds() {
         >
           <p className="eyebrow">Check out what's new</p>
           <h2 className="mt-4 h2-spec text-foreground">Featured ads</h2>
-        </motion.div>
+        </m.div>
 
         {/* Filter tabs */}
         <div className="mt-10 flex flex-wrap gap-2">
@@ -45,7 +45,7 @@ export function FeaturedAds() {
           ))}
         </div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -53,7 +53,7 @@ export function FeaturedAds() {
           className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3"
         >
           {filtered.map((ad) => (
-            <motion.div
+            <m.div
               key={ad.id}
               variants={fadeUp}
               className="group rounded-2xl border border-border bg-surface overflow-hidden card-hover"
@@ -106,9 +106,9 @@ export function FeaturedAds() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

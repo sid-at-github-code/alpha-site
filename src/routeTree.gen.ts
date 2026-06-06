@@ -9,13 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SuppliersRouteImport } from './routes/suppliers'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as HomeownersRouteImport } from './routes/homeowners'
 import { Route as DesignersRouteImport } from './routes/designers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SuppliersRoute = SuppliersRouteImport.update({
   id: '/suppliers',
   path: '/suppliers',
@@ -24,6 +31,11 @@ const SuppliersRoute = SuppliersRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeownersRoute = HomeownersRouteImport.update({
@@ -52,16 +64,20 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,8 +85,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/designers': typeof DesignersRoute
   '/homeowners': typeof HomeownersRoute
+  '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/suppliers': typeof SuppliersRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,18 +97,30 @@ export interface FileRouteTypes {
     | '/about'
     | '/designers'
     | '/homeowners'
+    | '/privacy'
     | '/signup'
     | '/suppliers'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/designers' | '/homeowners' | '/signup' | '/suppliers'
+  to:
+    | '/'
+    | '/about'
+    | '/designers'
+    | '/homeowners'
+    | '/privacy'
+    | '/signup'
+    | '/suppliers'
+    | '/terms'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/designers'
     | '/homeowners'
+    | '/privacy'
     | '/signup'
     | '/suppliers'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -98,12 +128,21 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   DesignersRoute: typeof DesignersRoute
   HomeownersRoute: typeof HomeownersRoute
+  PrivacyRoute: typeof PrivacyRoute
   SignupRoute: typeof SignupRoute
   SuppliersRoute: typeof SuppliersRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/suppliers': {
       id: '/suppliers'
       path: '/suppliers'
@@ -116,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/homeowners': {
@@ -154,8 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   DesignersRoute: DesignersRoute,
   HomeownersRoute: HomeownersRoute,
+  PrivacyRoute: PrivacyRoute,
   SignupRoute: SignupRoute,
   SuppliersRoute: SuppliersRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

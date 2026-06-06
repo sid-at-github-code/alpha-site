@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motionVariants";
 import lightVideoUrl from "@/assets/main-light.webm?url";
 import darkVideoUrl from "@/assets/main-dark.webm?url";
@@ -41,17 +41,17 @@ export function HeroSearch() {
     >
 
       {/* Video — 70% wide from the right, full section height, fully visible (no crop) */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
         style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "70%" }}
       >
         <HeroVideo />
-      </motion.div>
+      </m.div>
 
       {/* Text — left side, flows freely, may overlap video */}
-      <motion.div
+      <m.div
         variants={stagger}
         initial="hidden"
         animate="show"
@@ -63,11 +63,11 @@ export function HeroSearch() {
           maxWidth: 560,
         }}
       >
-        <motion.div variants={fadeUp}>
+        <m.div variants={fadeUp}>
           <span className="eyebrow">India's Premium Interior Marketplace</span>
-        </motion.div>
+        </m.div>
 
-        <motion.h1
+        <m.h1
           variants={fadeUp}
           style={{
             fontFamily: "Poppins, sans-serif",
@@ -83,9 +83,9 @@ export function HeroSearch() {
           Find Anything
           <br />
           For Your Dream Space.
-        </motion.h1>
+        </m.h1>
 
-        <motion.p
+        <m.p
           variants={fadeUp}
           style={{
             fontFamily: "Poppins, sans-serif",
@@ -99,10 +99,10 @@ export function HeroSearch() {
           }}
         >
           Connect with top designers, source premium materials, and bring your interior vision to life — all in one place.
-        </motion.p>
+        </m.p>
 
         {/* Search bar */}
-        <motion.div
+        <m.div
           variants={fadeUp}
           className="flex gap-3"
           style={{
@@ -141,10 +141,10 @@ export function HeroSearch() {
             <Search size={14} strokeWidth={2.5} />
             Search
           </button>
-        </motion.div>
+        </m.div>
 
         {/* Popular tags */}
-        <motion.div
+        <m.div
           variants={fadeUp}
           style={{ marginTop: 20, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}
         >
@@ -152,9 +152,8 @@ export function HeroSearch() {
             What's popular:
           </span>
           {popularTags.map((tag) => (
-            <a
+            <span
               key={tag}
-              href="#"
               style={{
                 fontFamily: "Poppins",
                 fontSize: 11,
@@ -163,15 +162,14 @@ export function HeroSearch() {
                 border: "1px solid var(--border)",
                 borderRadius: 100,
                 padding: "4px 12px",
-                textDecoration: "none",
-                transition: "border-color 0.2s",
+                cursor: "default",
               }}
             >
               {tag}
-            </a>
+            </span>
           ))}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 
 const articles = [
@@ -50,7 +50,7 @@ export function BlogNews() {
       />
 
       <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -61,22 +61,22 @@ export function BlogNews() {
             <p className="eyebrow">News</p>
             <h2 className="mt-4 h2-spec text-foreground">The latest news</h2>
           </div>
-          {/* "View all" pill button */}
-          <a
-            href="#"
-            className="hidden md:inline-flex items-center mb-2 px-4 py-2 rounded-full text-[13px] font-medium transition hover:bg-accent/10"
+          {/* "View all" — blog section coming soon */}
+          <span
+            className="hidden md:inline-flex items-center mb-2 px-4 py-2 rounded-full text-[13px] font-medium"
             style={{
-              border: "1px solid #F87B54",
-              color: "#F87B54",
+              border: "1px solid rgba(248,123,84,0.3)",
+              color: "rgba(248,123,84,0.5)",
               fontFamily: "Poppins",
               letterSpacing: "0.01em",
+              cursor: "default",
             }}
           >
-            View all →
-          </a>
-        </motion.div>
+            More coming soon
+          </span>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -84,9 +84,8 @@ export function BlogNews() {
           className="mt-14 grid gap-5 sm:grid-cols-2"
         >
           {articles.map((article) => (
-            <motion.a
+            <m.div
               key={article.id}
-              href="#"
               variants={fadeUp}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 24 }}
@@ -94,8 +93,6 @@ export function BlogNews() {
               style={{
                 background: "var(--surface-raised)",
                 boxShadow: "0 2px 16px rgba(0,0,0,0.10)",
-                display: "block",
-                textDecoration: "none",
               }}
             >
               {/* Accent top stripe */}
@@ -149,7 +146,7 @@ export function BlogNews() {
                 </span>
               </div>
 
-              <motion.h3
+              <m.h3
                 whileHover={{ color: "#F87B54" }}
                 transition={{ duration: 0.2 }}
                 style={{
@@ -162,23 +159,23 @@ export function BlogNews() {
                 }}
               >
                 {article.title}
-              </motion.h3>
-            </motion.a>
+              </m.h3>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
-        {/* Mobile "View all" pill */}
-        <a
-          href="#"
-          className="md:hidden mt-6 inline-flex items-center px-4 py-2 rounded-full text-[13px] font-medium transition hover:bg-accent/10"
+        {/* Mobile "More coming soon" */}
+        <span
+          className="md:hidden mt-6 inline-flex items-center px-4 py-2 rounded-full text-[13px] font-medium"
           style={{
-            border: "1px solid #F87B54",
-            color: "#F87B54",
+            border: "1px solid rgba(248,123,84,0.3)",
+            color: "rgba(248,123,84,0.5)",
             fontFamily: "Poppins",
+            cursor: "default",
           }}
         >
-          View all →
-        </a>
+          More coming soon
+        </span>
       </div>
     </section>
   );

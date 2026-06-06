@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -10,11 +10,21 @@ import suppliersImg from "@/assets/suppliers.jpg";
 export const Route = createFileRoute("/suppliers")({
   head: () => ({
     meta: [
-      { title: "For Suppliers & Manufacturers — Alpha Firms" },
-      { name: "description", content: "Your catalog, in front of every active interior project. Alpha Firms surfaces supplier profiles when designers are specifying." },
-      { property: "og:title", content: "For Suppliers — Alpha Firms" },
-      { property: "og:description", content: "B2B lead generation built for how materials actually get specified." },
+      { title: "For Suppliers & Manufacturers — Get In Front of Active Interior Projects | AlphaFirms" },
+      { name: "description", content: "List your catalog on AlphaFirms and get visibility with designers and architects at the exact moment they're specifying materials. B2B lead generation built for how the interior industry works." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "For Suppliers — Reach Designers at Point of Specification | AlphaFirms" },
+      { property: "og:description", content: "Your catalog, in front of every active interior project. B2B lead generation built for how materials actually get specified." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.alphafirms.com/suppliers" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "AlphaFirms" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@alphafirms" },
+      { name: "twitter:title", content: "Suppliers — Reach Designers at Point of Specification | AlphaFirms" },
+      { name: "twitter:description", content: "Get your catalog in front of active interior projects across India." },
     ],
+    links: [{ rel: "canonical", href: "https://www.alphafirms.com/suppliers" }],
   }),
   component: SuppliersPage,
 });
@@ -46,9 +56,24 @@ const stats = [
   { value: "50+", label: "Suppliers Listed" },
 ];
 
+const suppliersSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://www.alphafirms.com/suppliers#service",
+  "name": "Supplier Visibility Platform for Interior Materials",
+  "description": "AlphaFirms surfaces supplier catalogs to active interior designers and architects at the moment of material specification. B2B lead generation built for the Indian interior industry.",
+  "provider": { "@id": "https://www.alphafirms.com/#organization" },
+  "areaServed": { "@type": "Country", "name": "India" },
+  "serviceType": "B2B Interior Supply Chain Platform",
+  "audience": { "@type": "Audience", "audienceType": "Material Suppliers, Furniture Manufacturers, Lighting Suppliers" },
+  "url": "https://www.alphafirms.com/suppliers",
+});
+
 function SuppliersPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: suppliersSchema }} />
+      <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       {/* ── Hero ── */}
@@ -68,18 +93,18 @@ function SuppliersPage() {
 
         <div className="relative mx-auto max-w-[1120px] px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Text */}
-          <motion.div variants={stagger} initial="hidden" animate="show" className="flex-1 min-w-0">
-            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>For Material Suppliers & Manufacturers</motion.p>
-            <motion.h1 variants={fadeUp} className="font-display font-light text-foreground mt-6"
+          <m.div variants={stagger} initial="hidden" animate="show" className="flex-1 min-w-0">
+            <m.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>For Material Suppliers & Manufacturers</m.p>
+            <m.h1 variants={fadeUp} className="font-display font-light text-foreground mt-6"
               style={{ fontSize: "clamp(38px, 4.8vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}>
               Your materials are
               <br />specified before
               <br />you know the project exists.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 text-[18px] text-muted-foreground" style={{ maxWidth: 540, lineHeight: 1.65 }}>
+            </m.h1>
+            <m.p variants={fadeUp} className="mt-8 text-[18px] text-muted-foreground" style={{ maxWidth: 540, lineHeight: 1.65 }}>
               On Alpha Firms, your supplier profile is in the room when a designer starts a project brief — not after they've already decided. Be visible where decisions are made.
-            </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
+            </m.p>
+            <m.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
               <a href="/signup"
                 className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white transition"
                 style={{ boxShadow: "0 4px 20px rgba(248,123,84,0.30)" }}
@@ -88,42 +113,42 @@ function SuppliersPage() {
                 List Your Products
               </a>
               <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">See how it works →</a>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Image */}
-          <motion.div initial={{ opacity: 0, x: 40, rotate: -2 }} animate={{ opacity: 1, x: 0, rotate: -2 }}
+          <m.div initial={{ opacity: 0, x: 40, rotate: -2 }} animate={{ opacity: 1, x: 0, rotate: -2 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
             className="hidden md:block flex-shrink-0" style={{ width: 420, height: 520 }}>
             <div style={{ width: "100%", height: "100%", borderRadius: 28, overflow: "hidden",
               boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 8px 32px rgba(248,123,84,0.08), 0 0 0 1px var(--border)" }}>
-              <img src={suppliersImg} alt="Material suppliers" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <img src={suppliersImg} alt="Material suppliers" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* ── Problem ── */}
       <section className="py-28 border-t border-border" style={{ background: "linear-gradient(180deg, var(--surface) 0%, var(--background) 100%)" }}>
         <div className="mx-auto max-w-[1120px] px-6 grid gap-16 md:grid-cols-2 items-start">
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}>
-            <motion.h2 variants={fadeUp} className="font-display font-light text-foreground"
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}>
+            <m.h2 variants={fadeUp} className="font-display font-light text-foreground"
               style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               Great materials don't find designers on their own.
-            </motion.h2>
+            </m.h2>
             <div className="mt-10 space-y-5">
               {problems.map((p) => (
-                <motion.div key={p.n} variants={fadeUp}
+                <m.div key={p.n} variants={fadeUp}
                   className="flex gap-5 p-4 rounded-xl"
                   style={{ backgroundColor: "var(--surface-raised)", border: "1px solid var(--border)", boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}>
                   <span className="font-mono text-[11px] text-accent uppercase tracking-[0.16em] pt-0.5 shrink-0">{p.n}</span>
                   <p className="text-[15px] text-foreground" style={{ lineHeight: 1.55 }}>{p.body}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp}
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp}
             className="rounded-2xl p-10 relative overflow-hidden"
             style={{ backgroundColor: "var(--surface-raised)", borderLeft: "3px solid var(--accent)", border: "1px solid var(--border)", borderLeftWidth: 3, borderLeftColor: "var(--accent)", boxShadow: "0 8px 40px rgba(0,0,0,0.10), 0 0 60px rgba(248,123,84,0.06), inset 0 0 40px rgba(248,123,84,0.03)" }}>
             <div className="pointer-events-none absolute top-0 left-0 w-40 h-40" style={{ background: "radial-gradient(circle, rgba(248,123,84,0.08) 0%, transparent 70%)" }} />
@@ -133,7 +158,7 @@ function SuppliersPage() {
             <p className="mt-6 text-[15px] text-muted-foreground relative" style={{ lineHeight: 1.65 }}>
               When a designer on Alpha Firms begins a project, they see supplier profiles that match their material needs. Your catalog, your pricing, your story — at the exact moment they're specifying.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -150,19 +175,19 @@ function SuppliersPage() {
         <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 55% 50% at 50% 100%, rgba(248,123,84,0.05), transparent)" }} />
         <div className="relative mx-auto max-w-[1120px] px-6">
           <SectionHeading title="Built for the way materials actually get specified." />
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
             className="mt-16 grid gap-6 md:grid-cols-3">
             {benefits.map((b) => (
-              <motion.div key={b.title} variants={fadeUp}
+              <m.div key={b.title} variants={fadeUp}
                 whileHover={{ y: -6, transition: { duration: 0.22 } }}
                 className="rounded-2xl p-7 relative overflow-hidden"
                 style={{ backgroundColor: "var(--surface-raised)", border: "1px solid var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
                 <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: "linear-gradient(90deg, var(--accent), transparent)" }} />
                 <h3 className="font-display font-light text-foreground" style={{ fontSize: 22 }}>{b.title}</h3>
                 <p className="mt-4 text-[15px] text-muted-foreground" style={{ lineHeight: 1.65 }}>{b.body}</p>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -172,7 +197,7 @@ function SuppliersPage() {
           <SectionHeading align="center" title="The opportunity, in numbers." />
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: "var(--border)" }}>
             {stats.map((s, i) => (
-              <motion.div key={s.label} initial="hidden" whileInView="show" viewport={viewportOnce}
+              <m.div key={s.label} initial="hidden" whileInView="show" viewport={viewportOnce}
                 variants={fadeUp} transition={{ delay: i * 0.08 }}
                 className="px-6 py-10 text-center"
                 style={{ backgroundColor: "var(--background)" }}>
@@ -185,7 +210,7 @@ function SuppliersPage() {
                   {s.value}
                 </p>
                 <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{s.label}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
           <p className="mt-10 text-center text-[13px] text-muted-foreground">
@@ -196,5 +221,6 @@ function SuppliersPage() {
 
       <Footer />
     </main>
+    </>
   );
 }

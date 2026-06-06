@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import logoUrl from "../assets/Alphafirms-logo-modified.png?url";
@@ -79,14 +80,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "AlphaFirms — India's Interior Ecosystem" },
+      { name: "description", content: "AlphaFirms connects homeowners, designers, architects, and suppliers in India's most trusted interior & living space platform." },
+      { name: "author", content: "AlphaFirms" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "AlphaFirms — India's Interior Ecosystem" },
+      { property: "og:description", content: "India's only trusted interior & living space ecosystem." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "AlphaFirms" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:image", content: "https://www.alphafirms.com/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "AlphaFirms — India's Interior Ecosystem" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@alphafirms" },
+      { name: "twitter:image", content: "https://www.alphafirms.com/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -94,6 +103,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: logoUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://images.unsplash.com" },
+      { rel: "preconnect", href: "https://framerusercontent.com" },
+      { rel: "preload", href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap", as: "style" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap",
@@ -106,6 +118,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.alphafirms.com/#organization",
+  "name": "AlphaFirms",
+  "alternateName": "Alpha Firms",
+  "url": "https://www.alphafirms.com",
+  "logo": "https://www.alphafirms.com/og-image.png",
+  "description": "India's only trusted interior & living space ecosystem connecting homeowners, designers, architects, and suppliers.",
+  "foundingDate": "2024",
+  "areaServed": { "@type": "Country", "name": "India" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@alphafirms.com",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": ["https://www.alphafirms.com"]
+});
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -116,6 +148,10 @@ function RootShell({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: orgSchema }}
         />
       </head>
       <body>
@@ -131,9 +167,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PageLoader />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <LazyMotion features={domAnimation} strict>
+        <PageLoader />
+        <Outlet />
+      </LazyMotion>
     </QueryClientProvider>
   );
 }

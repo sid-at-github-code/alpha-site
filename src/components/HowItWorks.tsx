@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { viewportOnce } from "@/lib/motionVariants";
 
 /* ── Per-step SVG icons (pure CSS animated, no SMIL) ── */
@@ -166,7 +166,7 @@ export function HowItWorks() {
       <div className="relative mx-auto max-w-[1120px] px-6">
 
         {/* ── Heading ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -185,7 +185,7 @@ export function HowItWorks() {
             Simple for
             <span style={{ color: "var(--accent)" }}> everyone</span> involved.
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* ── Arrow cards ── */}
         {/* On desktop: overlapping pentagons pointing right.
@@ -196,7 +196,7 @@ export function HowItWorks() {
             const zIndex = steps.length - i; // 3, 2, 1
 
             return (
-              <motion.div
+              <m.div
                 key={s.n}
                 initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -269,7 +269,7 @@ export function HowItWorks() {
                 }}>
                   {s.body}
                 </p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

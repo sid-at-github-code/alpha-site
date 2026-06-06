@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type MouseEvent } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, viewportOnce } from "@/lib/motionVariants";
 
 import furnitureImg from "@/assets/furniture.jpg";
@@ -8,10 +8,10 @@ import homeDecorImg from "@/assets/home-decor.jpg";
 import lightsImg    from "@/assets/lights.jpg";
 
 const CATEGORIES = [
-  { label: "Furnitures", tilt: -8,  image: furnitureImg },
-  { label: "Interior",   tilt:  5,  image: interiorImg  },
-  { label: "Home Decor", tilt: -4,  image: homeDecorImg },
-  { label: "Lighting",   tilt:  9,  image: lightsImg    },
+  { label: "Furnitures", tilt: -8, image: furnitureImg, href: "/homeowners" },
+  { label: "Interior",   tilt:  5, image: interiorImg,  href: "/designers"  },
+  { label: "Home Decor", tilt: -4, image: homeDecorImg, href: "/homeowners" },
+  { label: "Lighting",   tilt:  9, image: lightsImg,    href: "/suppliers"  },
 ];
 
 const RADIUS     = 155;
@@ -22,7 +22,7 @@ const DEG_PER_MS = 0.007;
 /* ── Hover text item with animated orange underline ── */
 function CategoryLabel({ label, delay }: { label: string; delay: number }) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
@@ -30,7 +30,7 @@ function CategoryLabel({ label, delay }: { label: string; delay: number }) {
       whileHover="hovered"
       style={{ cursor: "pointer" }}
     >
-      <motion.p
+      <m.p
         variants={{ hovered: { color: "var(--accent)" } }}
         transition={{ duration: 0.18 }}
         style={{
@@ -45,11 +45,11 @@ function CategoryLabel({ label, delay }: { label: string; delay: number }) {
         }}
       >
         {label}
-      </motion.p>
+      </m.p>
 
       {/* Orange loading-bar underline */}
       <div style={{ position: "relative", height: 3, marginTop: 8, borderRadius: 2, overflow: "hidden", background: "var(--border)" }}>
-        <motion.div
+        <m.div
           variants={{ hovered: { scaleX: 1 }, hidden: { scaleX: 0 }, show: { scaleX: 0 } }}
           transition={{ duration: 0.28, ease: "easeOut" }}
           style={{
@@ -61,24 +61,34 @@ function CategoryLabel({ label, delay }: { label: string; delay: number }) {
           }}
         />
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
 export function FeaturedCategories() {
-  const anglesRef  = useRef(CATEGORIES.map((_, i) => i * (360 / CATEGORIES.length)));
-  const pausedRef  = useRef(false);
-  const lastRef    = useRef(0);
-  const rafRef     = useRef(0);
+  const anglesRef   = useRef(CATEGORIES.map((_, i) => i * (360 / CATEGORIES.length)));
+  const pausedRef   = useRef(false);
+  const visibleRef  = useRef(true);
+  const lastRef     = useRef(0);
+  const rafRef      = useRef(0);
+  const sectionRef  = useRef<HTMLElement>(null);
   const [angles,   setAngles]   = useState(anglesRef.current.slice());
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => { visibleRef.current = entry.isIntersecting; }, { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const tick = (now: number) => {
       if (lastRef.current && !pausedRef.current) {
         const dt = now - lastRef.current;
         anglesRef.current = anglesRef.current.map(a => (a + dt * DEG_PER_MS) % 360);
-        setAngles(anglesRef.current.slice());
+        if (visibleRef.current) setAngles(anglesRef.current.slice());
       }
       lastRef.current = now;
       rafRef.current  = requestAnimationFrame(tick);
@@ -93,7 +103,7 @@ export function FeaturedCategories() {
   };
 
   return (
-    <section className="border-t border-border" style={{ padding: "96px 0", overflow: "hidden" }}>
+    <section ref={sectionRef} className="border-t border-border" style={{ padding: "96px 0", overflow: "hidden" }}>
       <div
         className="mx-auto px-6"
         style={{ maxWidth: 1280, display: "flex", alignItems: "center", gap: 0 }}
@@ -147,7 +157,7 @@ export function FeaturedCategories() {
                 }}
               >
                 <a
-                  href="#"
+                  href={cat.href}
                   style={{
                     display:        "block",
                     position:       "relative",
@@ -174,6 +184,8 @@ export function FeaturedCategories() {
                   <img
                     src={cat.image}
                     alt={cat.label}
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   />
                   <div style={{
@@ -211,7 +223,7 @@ export function FeaturedCategories() {
             gap:           36,
           }}
         >
-          <motion.p
+          <m.p
             initial="hidden"
             whileInView="show"
             viewport={viewportOnce}
@@ -220,13 +232,13 @@ export function FeaturedCategories() {
             style={{ marginBottom: 4 }}
           >
             Featured categories
-          </motion.p>
+          </m.p>
 
           {CATEGORIES.map((cat, i) => (
             <CategoryLabel key={cat.label} label={cat.label} delay={i * 0.1} />
           ))}
 
-          <motion.p
+          <m.p
             initial="hidden"
             whileInView="show"
             viewport={viewportOnce}
@@ -234,8 +246,8 @@ export function FeaturedCategories() {
             style={{ fontSize: 13, color: "var(--muted-foreground)", margin: 0 }}
           >
             Didn't find what you're looking for?{" "}
-            <a href="#" style={{ color: "var(--accent)", textDecoration: "none" }}>View all →</a>
-          </motion.p>
+            <a href="/homeowners" style={{ color: "var(--accent)", textDecoration: "none" }}>View all →</a>
+          </m.p>
         </div>
 
       </div>

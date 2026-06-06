@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 
 const features = [
@@ -42,7 +42,7 @@ export function PlatformValue() {
       />
 
       <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -53,9 +53,9 @@ export function PlatformValue() {
           <h2 className="mt-4 h2-spec text-foreground">
             INDIA's only trusted Interior &amp; Living Space Ecosystem
           </h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -63,7 +63,7 @@ export function PlatformValue() {
           className="mt-16 grid gap-5 md:grid-cols-3"
         >
           {features.map((f) => (
-            <motion.div
+            <m.div
               key={f.title}
               variants={fadeUp}
               whileHover={{ y: -6 }}
@@ -101,11 +101,11 @@ export function PlatformValue() {
               >
                 {f.body}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -138,7 +138,7 @@ export function PlatformValue() {
           <a href="#" className="btn-primary mt-8">
             Explore listings
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

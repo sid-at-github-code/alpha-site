@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, viewportOnce } from "@/lib/motionVariants";
 
 export function SectionHeading({
@@ -13,7 +13,7 @@ export function SectionHeading({
   align?: "left" | "center";
 }) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
@@ -32,6 +32,6 @@ export function SectionHeading({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </m.div>
   );
 }

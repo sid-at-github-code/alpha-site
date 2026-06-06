@@ -1,29 +1,26 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 
 const testimonials = [
-  { name: "Adam Jarod", role: "Sales manager" },
-  { name: "Emily Rees", role: "Marketing specialist" },
-  { name: "John Smith", role: "Office assistant" },
-  { name: "Paul Trueman", role: "Designer" },
-  { name: "George Davin", role: "Project manager" },
+  { name: "Neha Raghavan", role: "Homeowner, Bangalore", body: "Found two shortlisted designers within a day. Both were exactly right for my 3BHK. I've never had that kind of precision matching before." },
+  { name: "Arjun Mehta", role: "Interior Designer, Mumbai", body: "Alpha Firms changed how I source clients. The briefs are detailed, the homeowners are serious, and the platform actually gets out of the way." },
+  { name: "Priya Nair", role: "Architect, Hyderabad", body: "The supplier catalog alone is worth it. I found two vendors I never would have discovered otherwise — both delivered on spec, on time." },
+  { name: "Vikram Kapoor", role: "Supplier, Delhi NCR", body: "We went from zero to 12 active designer relationships in three months. The exposure on Alpha Firms is unlike any platform we've tried." },
+  { name: "Shruti Joshi", role: "Homeowner, Pune", body: "What surprised me was how well the designer understood the brief. No endless back-and-forth. We signed off on the concept in the first meeting." },
 ];
 
-const body =
-  "Donec nibh nibh, tempus sit amet dignissim finibus ultricies vitae urna. Pellentesque at urna non laoreet. Aenean euismod, et laoreet luctus, justo ligula libero felis.";
-
-function TestimonialCard({ name, role }: { name: string; role: string }) {
+function TestimonialCard({ name, role, body }: { name: string; role: string; body: string }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <motion.div
+    <m.div
       variants={fadeUp}
       style={{ perspective: 1200, minHeight: 260 }}
       onHoverStart={() => setFlipped(true)}
       onHoverEnd={() => setFlipped(false)}
     >
-      <motion.div
+      <m.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
         style={{
@@ -163,8 +160,8 @@ function TestimonialCard({ name, role }: { name: string; role: string }) {
             Verified member
           </span>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -190,7 +187,7 @@ export function Testimonials() {
       />
 
       <div className="mx-auto max-w-[1120px] px-6" style={{ position: "relative" }}>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -198,9 +195,9 @@ export function Testimonials() {
         >
           <p className="eyebrow">What our clients say</p>
           <h2 className="mt-4 h2-spec text-foreground">Testimonials</h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
@@ -208,9 +205,9 @@ export function Testimonials() {
           className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {testimonials.map((t) => (
-            <TestimonialCard key={t.name} name={t.name} role={t.role} />
+            <TestimonialCard key={t.name} name={t.name} role={t.role} body={t.body} />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

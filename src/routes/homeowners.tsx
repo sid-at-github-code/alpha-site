@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import homeOwnersLight from "@/assets/home-owners.jpg";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -11,11 +11,21 @@ import { fadeUp, stagger, viewportOnce } from "@/lib/motionVariants";
 export const Route = createFileRoute("/homeowners")({
   head: () => ({
     meta: [
-      { title: "For Homeowners — Alpha Firms" },
-      { name: "description", content: "Tell Alpha Firms what you're building. We match you with verified interior professionals whose track record fits your exact project." },
-      { property: "og:title", content: "For Homeowners — Alpha Firms" },
-      { property: "og:description", content: "The right designer exists. We find them." },
+      { title: "For Homeowners — Find Verified Interior Designers | AlphaFirms" },
+      { name: "description", content: "Submit a 3-minute project brief and get matched with 2–4 verified interior designers whose specialty, style, and budget fit your exact project. No guesswork." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "For Homeowners — Find Verified Interior Designers | AlphaFirms" },
+      { property: "og:description", content: "The right designer exists. AlphaFirms finds them. Matched on specialty, not just availability." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.alphafirms.com/homeowners" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:site_name", content: "AlphaFirms" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@alphafirms" },
+      { name: "twitter:title", content: "Find Verified Interior Designers — AlphaFirms" },
+      { name: "twitter:description", content: "Submit a brief. Get matched with 2–4 verified designers. No guesswork, no endless scrolling." },
     ],
+    links: [{ rel: "canonical", href: "https://www.alphafirms.com/homeowners" }],
   }),
   component: HomeownersPage,
 });
@@ -46,16 +56,59 @@ const testimonials = [
   { quote: "The brief process made me think clearly about what I actually wanted. And the designer I was matched with clearly read it. No back and forth.", name: "Kavita S.", meta: "Office Interior, Hyderabad" },
 ];
 
+const homeownersSchema = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://www.alphafirms.com/homeowners#service",
+    "name": "Interior Designer Matching for Homeowners",
+    "description": "AlphaFirms matches homeowners with 2–4 verified interior designers based on project type, budget, style, and timeline.",
+    "provider": { "@id": "https://www.alphafirms.com/#organization" },
+    "areaServed": { "@type": "Country", "name": "India" },
+    "serviceType": "Interior Design Matching",
+    "audience": { "@type": "Audience", "audienceType": "Homeowners, Property Owners" },
+    "url": "https://www.alphafirms.com/homeowners",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I know the interior designer is actually good?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every designer on AlphaFirms is reviewed before they join. Portfolio verified. References checked. You see their real completed work, not their highlight reel." },
+      },
+      {
+        "@type": "Question",
+        "name": "What if the designer goes over budget?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Projects on AlphaFirms start with a clear brief and a quoted scope. You agree before anything begins. No surprises and no renegotiation mid-project." },
+      },
+      {
+        "@type": "Question",
+        "name": "What if the designer doesn't understand what I want?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our matching considers your style, your budget, and your project type — not just location. You're matched on fit, not availability." },
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to get matched with a designer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "From idea to matched professional in 24 hours. Submit a 3-minute project brief and AlphaFirms surfaces 2–4 designers whose expertise, style, and availability align with your project." },
+      },
+    ],
+  },
+]);
+
 function HomeownerHeroImage() {
   return (
-    <img src={homeOwnersLight} alt="For Homeowners"
+    <img src={homeOwnersLight} alt="For Homeowners" loading="lazy" decoding="async"
       style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
   );
 }
 
 function HomeownersPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: homeownersSchema }} />
+      <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       {/* ── Hero ── */}
@@ -66,20 +119,20 @@ function HomeownersPage() {
 
         <div className="relative mx-auto max-w-[1120px] px-6 flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Text */}
-          <motion.div variants={stagger} initial="hidden" animate="show" className="flex-1 min-w-0">
-            <motion.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
+          <m.div variants={stagger} initial="hidden" animate="show" className="flex-1 min-w-0">
+            <m.p variants={fadeUp} className="eyebrow" style={{ letterSpacing: "0.14em" }}>
               For Homeowners & Property Owners
-            </motion.p>
-            <motion.h1 variants={fadeUp} className="font-display font-light text-foreground mt-6"
+            </m.p>
+            <m.h1 variants={fadeUp} className="font-display font-light text-foreground mt-6"
               style={{ fontSize: "clamp(54px, 7vw, 96px)", lineHeight: 0.92, letterSpacing: "-0.02em" }}>
               The right designer
               <br />exists. We find them.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 text-[18px] text-muted-foreground" style={{ maxWidth: 520, lineHeight: 1.65 }}>
+            </m.h1>
+            <m.p variants={fadeUp} className="mt-8 text-[18px] text-muted-foreground" style={{ maxWidth: 520, lineHeight: 1.65 }}>
               Tell Alpha Firms what you're building. We match you with verified interior
               professionals whose track record fits your exact project — not just whoever's available.
-            </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
+            </m.p>
+            <m.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-6">
               <a href="/signup"
                 className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-[11px] font-mono uppercase tracking-[0.12em] text-white transition"
                 style={{ boxShadow: "0 0 0 0 rgba(248,123,84,0.4), 0 4px 20px rgba(248,123,84,0.3)" }}
@@ -90,15 +143,15 @@ function HomeownersPage() {
               <a href="#how" className="text-[14px] text-accent border-b border-transparent hover:border-accent transition">
                 How matching works →
               </a>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Image */}
-          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
+          <m.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
             className="hidden md:block flex-shrink-0" style={{ width: 420, height: 520 }}>
             <HomeownerHeroImage />
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -106,10 +159,10 @@ function HomeownersPage() {
       <section className="py-28 border-t border-border" style={{ background: "linear-gradient(180deg, var(--surface) 0%, var(--background) 100%)" }}>
         <div className="mx-auto max-w-[1120px] px-6">
           <SectionHeading title="Every homeowner has the same three worries." subtitle="We built Alpha Firms to solve all three." />
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
             className="mt-14 grid gap-6 md:grid-cols-3">
             {fears.map((f) => (
-              <motion.div key={f.worry} variants={fadeUp}
+              <m.div key={f.worry} variants={fadeUp}
                 whileHover={{ y: -6, transition: { duration: 0.22 } }}
                 className="rounded-2xl bg-surface-raised p-8 relative overflow-hidden"
                 style={{
@@ -123,9 +176,9 @@ function HomeownersPage() {
                 </p>
                 <div className="my-5 h-px" style={{ background: "linear-gradient(90deg, var(--accent), transparent)", opacity: 0.5 }} />
                 <p className="text-[15px] text-foreground" style={{ lineHeight: 1.6 }}>{f.answer}</p>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -141,22 +194,22 @@ function HomeownersPage() {
       <section className="py-28 border-t border-border relative overflow-hidden" style={{ background: "linear-gradient(135deg, var(--surface) 0%, var(--background) 100%)" }}>
         <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(248,123,84,0.05), transparent)" }} />
         <div className="relative mx-auto max-w-[1120px] px-6 grid gap-16 md:grid-cols-2 items-center">
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp}
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={fadeUp}
             className="rounded-2xl p-8 md:p-10"
             style={{ border: "1px solid rgba(248,123,84,0.2)", background: "rgba(248,123,84,0.03)", boxShadow: "0 0 60px rgba(248,123,84,0.07), inset 0 0 40px rgba(248,123,84,0.03)" }}>
             <p className="font-display italic text-accent" style={{ fontSize: "clamp(26px, 3.5vw, 44px)", lineHeight: 1.15 }}>
               "Most platforms give you a list.<br />We give you a match."
             </p>
-          </motion.div>
-          <motion.ul initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger} className="space-y-0">
+          </m.div>
+          <m.ul initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger} className="space-y-0">
             {matchingFeatures.map((f) => (
-              <motion.li key={f} variants={fadeUp}
+              <m.li key={f} variants={fadeUp}
                 className="border-t border-border py-5 text-[16px] text-foreground flex items-center gap-4">
                 <span className="shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--accent)" }} />
                 {f}
-              </motion.li>
+              </m.li>
             ))}
-          </motion.ul>
+          </m.ul>
         </div>
       </section>
 
@@ -164,20 +217,21 @@ function HomeownersPage() {
       <section className="py-28 border-t border-border">
         <div className="mx-auto max-w-[1120px] px-6">
           <SectionHeading title="What happens when the right people find each other." />
-          <motion.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
+          <m.div initial="hidden" whileInView="show" viewport={viewportOnce} variants={stagger}
             className="mt-14 grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
-              <motion.div key={t.name} variants={fadeUp}
+              <m.div key={t.name} variants={fadeUp}
                 whileHover={{ y: -5, transition: { duration: 0.22 } }}
                 style={{ borderRadius: 16, boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)" }}>
                 <TestimonialCard {...t} />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       <Footer />
     </main>
+    </>
   );
 }
